@@ -5,10 +5,15 @@
 <instance-profile id="platform"
                  name="Ottm Platform developer docs"
                  start-page="Overview.md">
-
-    <toc-element topic="Overview.md"/>
+    <toc-element topic="Overview.md" />
     <toc-element topic="Variables.md"/>
-    <toc-element topic="Ramp.md"/>
+    <toc-element topic="통신-인증.md"/>
+    <toc-element topic="멤버십.md">
+        <toc-element topic="HIVE-커스텀-로그인.md"/>
+        <toc-element topic="OAuth-2-0.md"/>
+    </toc-element>
+    <toc-element topic="마켓.md">
+        <toc-element topic="토큰-발행-및-삭제.md"/>
+    </toc-element>
     <toc-element topic="퀘스트.md"/>
-    <toc-element topic="멤버십.md"/>
 </instance-profile>

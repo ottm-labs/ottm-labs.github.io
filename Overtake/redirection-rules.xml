@@ -6,8 +6,8 @@
         <accepts>page.html</accepts>
     </rule>
     -->
-    <rule id="7d36fdeb">
-        <description>Created after removal of "Reference" from Ottm Platform developer docs</description>
-        <accepts>Reference.html</accepts>
+    <rule id="4820cc3a">
+        <description><![CDATA[Created after removal of "<Ramp.md>" from Ottm Platform developer docs]]></description>
+        <accepts>Ramp.html</accepts>
     </rule>
 </rules>
