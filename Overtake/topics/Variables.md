@@ -10,4 +10,4 @@ OTTM 과 통신을 하기 위한 변수들을 정의한 페이지 입니다.
 | ramp api         | %partner-api-base%/ramp                 | %partner-api-prod-base%/ramp | 등록된 ip 에서만 접근 가능 |
 | ramp api openapi | %partner-api-base%/ramp/swagger-ui.html | -                            |           |
 | 멤버십 url          | %member-base%                           | %member-prod-base%           | |
-| api url          | %api-base%                              | %api-prod-base%              | |
+| 멤버십 api url      | %api-base%                              | %api-prod-base%              | |
