@@ -3,9 +3,12 @@
         SYSTEM "https://resources.jetbrains.com/writerside/1.0/product-profile.dtd">
 
 <instance-profile id="platform"
-                 name="Platform instance"
-                 start-page="Default-topic.md">
+                 name="Ottm Platform developer docs"
+                 start-page="Overview.md">
 
-    <toc-element topic="Starter.md"/>
-    <toc-element topic="Default-topic.md"/>
+    <toc-element topic="Overview.md"/>
+    <toc-element topic="Variables.md"/>
+    <toc-element topic="Ramp.md"/>
+    <toc-element topic="퀘스트.md"/>
+    <toc-element topic="멤버십.md"/>
 </instance-profile>

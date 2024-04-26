@@ -1,0 +1,144 @@
+# 토큰 발행 & 삭제(Ramp)
+> [Open Api ui](%partner-api-base%/ramp/swagger-ui.html)
+
+## 개요
+
+이 문서는 게임사에서 아이템을 토큰(NFT)으로 발행 하거나 삭제 하는 FLOW 를 설명하고 있습니다.
+
+모든 통신은 보안 조치를 위해, 게임 클라이언트에서 요청할 수 없고 게임사 서버에서만 요청할 수 있습니다.
+
+### 용어
+
+다음은 해당 문서를 이해하기 위해 필요한 용어 목록입니다
+
+| 용어               | 의미                                                                                                           | 동의어                              |
+|------------------|--------------------------------------------------------------------------------------------------------------|----------------------------------|
+| 민트(mint)         | 새로운 토큰을 블록체인에 생성하는 행위. ERC-721 에서 새로운 토큰은 새로운 id 를 가지고, ERC-1155 에선 새로운 id 로 민팅 할 수 있고, 기 존재하던 id 로 민팅할 수 있음 | 민팅(minting)                      |
+| 토큰 발행            |                                                                                                              |                                  |
+| 번(burn)          | 블록체인에서 토큰을 삭제하는 행위. ERC-721 에서 토큰 id 를 지정해서 삭제할 수 있고, ERC-1155 에서 토큰 id 와 삭제할 수량을 지정해서 삭제할 수 있음.             | 토큰 소각                            |
+| ERC-721          | 각 토큰이 고유한 가치를 지닌 스마트 컨트랙트 표준                                                                                 |                                  |
+| ERC-1155         | 같은 가치를 지닌 토큰이 여러개 있을 수 있는 스마트 컨트랙트 표준                                                                        |                                  |
+| 컨트랙트             | 스마트 컨트랙트 약어                                                                                                  | 스마트 컨트랙트(Smart contract 이하, SMC) |
+| minterKey        | 토큰을 민트할 수 있는 키(플랫폼이 보유함)                                                                                     |                                  |
+| signerKey        | 토큰 민팅을 요청할 수 있는 키(게임사 서버가 보유함)                                                                               |                                  |
+| 요청 id(requestId) | 게임사 서버에서 발행한, 요청을 식별할 수 있는 고유값                                                                               |                                  |
+| 플랫폼              | 토큰의 발행과 삭제처리하고, 해당 내용을 조회할 수 있는 API 서버                                                                       |                                  |
+| 게임 서버            | 토큰의 발행과 삭제, 내역 조회를 요청할 수 있는 서버                                                                               |                                  |
+| 토큰 메타데이터         | 토큰의 id 와 컨트랙트 주소                                                                                             |                                  |
+| 아이템 메타데이터        | 토큰의 메타데이터 (ERC-721 혹은 opensea 스펙)                                                                            |                                  |
+
+### 토큰 종류
+
+토큰화 하려는 아이템의 성격에 따라 ERC-721 표준과, ERC-1155 표준을 가진 스마트 컨트랙트로 정의될 수 있습니다.
+
+한개의 게임은 1개의 ERC-1155 컨트랙트와 N 개의 ERC-721 컨트랙트를 가질 수 있습니다.
+
+#### ERC-721 {collapsible="true"}
+
+모든 토큰(아이템) 이 고유한 가치를 지닙니다.
+
+예를들어, 디아블로의 아이템을 생각해 볼 때, 같은 이름을 지닌 아이템이더라도 상옵, 하옵 등으로 나눠질 수 있고, 모든 아이템은 각각의 고유한 가치를 가집니다.
+
+- 예시 이미지
+  ![windforce1](windforce1.png)
+  ![windforce2](windforce2.png)
+  같은 바람살 아이템이지만, 디테일한 능력치가 다릅니다.
+
+
+#### ERC-1155 {collapsible="true"}
+
+한 컨트랙트에 같은 id 를 가진 토큰이 여러개 있을 수 있습니다.
+
+같은 id 를 가진 토큰들은 같은 가치를 지닙니다.
+
+예를들어, 디아블로의 포션 등, 한개의 아이템 칸에 겹칠 수 있고, 전부 같은 가치를 지니는 아이템을 생각할 수 있습니다.
+
+- 예시 이미지
+
+  ![potion](potion.png)
+
+  체력 회복량 250을 가진 최하급 체력 포션(ID: 1)
+
+  마력 회복량 250을 가진 최하급 마력 포션(ID: 2)
+
+  체력 회복량 400을 가진 하급 체력 포션(ID: 3)
+
+  마력 회복량 400을 가진 하급 마력 포션(ID: 4)
+
+  한 캐릭터는 최하급 체력 포션을 여러개 가질 수 있고, 다른 캐릭터가 가진 최하급 체력 포션과 같은 가치를 가집니다
+
+
+### 아이템 메타데이터
+
+토큰의 가치를 표시하고, 마켓에서 토큰의 정보를 표시하기 위해 일반적인 기준을 가진 토큰 메타데이터를 게임사에서 제공해야 합니다.
+
+[링크](https://docs.opensea.io/docs/metadata-standards#section-metadata-structure)는  opensea 에서 정의한 메타데이터 스펙이지만, 일반적인 nft 마켓플레이스에서 통용되는 규약이기에 해당 스펙으로 가름합니다.
+
+## FLOW
+
+### 토큰 발행(MINT)
+
+```mermaid
+sequenceDiagram
+autonumber
+participant user as 사용자(game client)
+participant game as 게임 서버
+participant platform as 플랫폼
+participant chain as 블록 체인
+
+user ->> +game: 아이템 민팅 요청
+alt 토큰 민팅 요청
+game ->> +platform: 토큰 민팅 요청(requestId)
+Note left of game: opensea spec metadata json
+Note left of game: 아이템 민팅 요청<br>params<br>userId: 사용자 uid<br>metadata: opensea spec metadata json string<br>tokenId: 토큰 id<br>contractAddress: 스마트 컨트랙트 주소<br>amount: 수량<br>requestId: 요청 고유 id
+
+platform ->> +chain: 민팅 트랜잭션 제출
+chain ->> -platform: txHash
+platform ->> -game: requestId
+end
+game -> -user: 종료
+
+```
+
+### 토큰 발행 상태 조회
+
+```mermaid
+sequenceDiagram
+autonumber
+
+participant game as 게임 서버
+participant platform as 플랫폼
+participant chain as 블록 체인
+
+platform ->> +chain: 민팅 결과 확인 요청 
+chain ->> -platform: 민팅 결과 확인 완료
+game ->> +platform: requestId 목록으로 민팅 상태 조회 요청
+platform ->> -game: 각 requestId 별 민팅 상태 응답
+
+```
+
+### 삭제(BURN)된 토큰 목록 조회
+
+```mermaid
+sequenceDiagram
+autonumber
+participant user as 사용자(마켓 프론트)
+participant game as 게임 서버
+participant platform as 플랫폼
+participant chain as 블록 체인
+
+alt 토큰 삭제
+user ->> +platform: 사용자의 토큰 게임 아이템 화 하기 위해 삭제
+Note over platform: 게임 캐릭터 정보가 있는지 validation
+platform ->> -user: 응답
+user ->> chain: burn
+end
+
+alt 게임사에서 주기적으로 삭제된 토큰 목록 조회
+game ->> +platform: 삭제된 토큰 목록 조회
+platform ->> -game: 삭제된 토큰 목록 조회
+Note right of platform: burn 된 토큰 목록(wallet, 토큰 id, contract 페어)의 배열
+
+end
+
+```
