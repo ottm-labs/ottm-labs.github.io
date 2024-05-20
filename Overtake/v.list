@@ -2,7 +2,7 @@
 <!DOCTYPE vars SYSTEM "https://resources.jetbrains.com/writerside/1.0/vars.dtd">
 <vars>
     <var name="partner-api-base" value="https://partner-api.ottm-dev.co"/>
-    <var name="partner-api-prod-base" value="https://partner-api.ottm-dev.co"/>
+    <var name="partner-api-prod-base" value="https://partner-api.overtake.world"/>
     <var name="member-base" value="https://member.ottm-dev.co"/>
     <var name="member-prod-base" value="https://member.overtake.world"/>
     <var name="api-base" value="https://api.ottm-dev.co"/>
