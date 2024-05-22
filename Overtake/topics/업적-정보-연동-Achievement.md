@@ -1,5 +1,5 @@
 # 유저 업적 정보 등록(Achievement)
-
+> [Open Api ui](%partner-api-base%/achievement/swagger-ui/index.html)
 ### 개요
 
 1. OTTM Achievement 서버를 통해 유저의 업적 진행도 정보를 연동할 수 있습니다
@@ -20,7 +20,7 @@ alt 업적 정보 등록
 partner ->> +ottm_achievement: 유저 업적 진행도 등록
 end
 
-alt 업적 정보 조회
+alt 업적 정보 조회 (OTTM Internal)
 ottm_web ->> +ottm_quest: 유저 퀘스트 진행도 확인
 ottm_quest ->> +ottm_achievement: 멤버 업적 진행도 조회
 ottm_achievement ->> +ottm_quest: 멤버 업적 진행도  응답
