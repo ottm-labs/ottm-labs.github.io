@@ -16,7 +16,7 @@
 #### 업적의 등록
 - OTTM과 협의를 통하여 업적 별 고유값 (AchievementId) 사전 공유
 - /member/record API를 통하여 유저 업적 정보 등록
-- 업적 고유값을 기반으로 해당 업적 데이터의 유효기간 설정
+- 업적 고유값을 기반으로 해당 업적 데이터의 유효기간 설정 (UTC 기준)
   - e.g.) DAILY(achievementId: 2*****) 05.24 09:53:31 에 수신 한 경우 -> 05.25 00:00:00 만료
   - e.g.) ONE_TIME (achievementId: 1*****) 05.24 09:53:31 에 수신 한 경우 -> 유효 기간 없음
 
@@ -51,5 +51,4 @@ ottm_quest ->> +ottm_achievement: 멤버 업적 진행도 조회
 ottm_achievement ->> +ottm_quest: 멤버 업적 진행도  응답
 ottm_quest ->> +ottm_web: 유저 퀘스트 진행도 응답
 end
-
 ```
