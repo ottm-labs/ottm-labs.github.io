@@ -6,6 +6,8 @@
 2. 달성한 업적에 관련된 메타 정보는 사전에 OTTM과 공유가 되어있어야 합니다.
 3. 유저가 OTTM의 멤버인 경우에만 연동이 가능합니다.
 
+### 상세
+
 #### 업적 고유값
 - 0~99999 의 값을 갖는 업적 별 고유값
 - 10000자리 숫자를 통해, 업적의 유형 구분
@@ -21,17 +23,18 @@
   - e.g.) ONE_TIME (achievementId: 1*****) 05.24 09:53:31 에 수신 한 경우 -> 유효 기간 없음
 
 #### 업적 등록이 거부되는 경우
-- OTTM MemberUid가 잘못 된 경우
-- 진행도 정보가 잘못 된 경우
-  - (현재 달성값 (numerator) < 목표값 (denominator)) 인데 Clear처리가 된 경우
-  - (현재 달성값 (numerator) >= 목표값 (denominator)) 인데 Clear처리가 되지 않은 경우
-  - (현재 달성값 (numerator), 목표값 (denominator)) 둘중 하나만 값이 들어오는 경우
-  - 목표값 (denominator)이 0인 경우
-- achievementId가 잘못 된 경우
+- **OTTM MemberUid가 잘못 된 경우**
+  - 진행도 정보가 잘못 된 경우
+    - (현재 달성값 (numerator) < 목표값 (denominator)) 인데 Clear처리가 된 경우
+    - (현재 달성값 (numerator) >= 목표값 (denominator)) 인데 Clear처리가 되지 않은 경우
+    - (현재 달성값 (numerator), 목표값 (denominator)) 둘중 하나만 값이 들어오는 경우
+    - 목표값 (denominator)이 0인 경우
+- **achievementId가 잘못 된 경우**
   - 현재 지원 가능한 ONE_TIME, DAILY 이외의 값이 수신되는 경우
     - (0~9999) 또는 (40000 ~ 99999)
     - WEEKLY는 수신은 가능하나, OTTM Quest는 추후 지원 예정
-### **Flow**
+    
+### Flow
 
 ```mermaid
 sequenceDiagram
