@@ -18,6 +18,10 @@
         <toc-element topic="토큰-발행-및-삭제.md"/>
     </toc-element>
     <toc-element topic="업적.md">
-        <toc-element topic="업적-정보-연동-Achievement.md"/>
+        <toc-element topic="업적-정보-연동-Achievement.md">
+            <toc-element topic="API_Reference.md">
+                <toc-element topic="OTTM_멤버_업적_입력.md"/>
+            </toc-element>
+        </toc-element>
     </toc-element>
 </instance-profile>
