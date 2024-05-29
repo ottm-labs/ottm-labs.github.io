@@ -15,7 +15,14 @@
         <toc-element topic="멤버십-로그인-연동.md"/>
     </toc-element>
     <toc-element topic="마켓.md">
-        <toc-element topic="토큰-발행-및-삭제.md"/>
+        <toc-element topic="토큰-발행-및-삭제.md">
+            <toc-element topic="API_Reference2.topic">
+                <toc-element topic="Burn된_사용자의_NFT_목록_조회.topic"/>
+                <toc-element topic="게임_아이템_NFT_발행_진행_상태_확인.topic"/>
+                <toc-element topic="유저가_보유한_NFT_목록.topic"/>
+                <toc-element topic="게임_아이템_NFT_발행.topic"/>
+            </toc-element>
+        </toc-element>
     </toc-element>
     <toc-element topic="업적.md">
         <toc-element topic="업적-정보-연동-Achievement.md">
