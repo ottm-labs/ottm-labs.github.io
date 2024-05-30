@@ -1,4 +1,4 @@
-# [작성중] 유저 업적 정보 등록(Achievement)
+# 유저 업적 정보 등록(Achievement)
 > [Open Api ui](%partner-api-base%/achievement/swagger-ui/index.html)
 ### 개요
 
@@ -31,7 +31,7 @@
 - **achievementId가 잘못 된 경우**
   - 현재 지원 가능한 ONE_TIME, DAILY 이외의 값이 수신되는 경우
     - (0~9999) 또는 (40000 ~ 99999)
-    - WEEKLY는 수신은 가능하나, OTTM Quest는 추후 지원 예정
+    - WEEKLY 업적 정보는 등록은 가능하나, OTTM 플랫폼상의 Quest는 추후 지원 예정
     
 ### Flow
 
