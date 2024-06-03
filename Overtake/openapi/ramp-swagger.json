@@ -1,319 +1,384 @@
 {
-  "openapi": "3.0.1",
-  "info": {
-    "title": "Overtake OnOffRamp API",
-    "description": "## 에러 코드 목록\n| 코드 | HTTP 상태 코드 | 코드 | 메시지 | 설명 |\n| --- | --- | --- | --- | --- |\n| UNKNOWN | 500 | 1 | Unknown | 알 수 없는 에러 |\n| UNAUTHORIZED_ERROR | 403 | 23150 | Unauthorized | 권한 없음 |\n| INTERNAL_SERVER_ERROR | 500 | 23500 | Internal server error | 서버 내부 에러 |\n| REQUEST_NOT_VALID | 400 | 23400 | Request not valid | 요청 validation 실패 |\n| NO_WALLET_ERROR | 400 | 23001 | No wallet connection | 지갑 주소가 없음 |\n| ALREADY_OWNED_ERROR | 400 | 23002 | Already owned | 이미 소유한 NFT |\n| NO_REQUEST_ID_ERROR | 400 | 23003 | No requestId | Request Id 없음 |\n"
+  "openapi":"3.0.1",
+  "info":{
+    "title":"Overtake OnOffRamp API",
+    "description":"## 에러 코드 목록\n| 코드 | HTTP 상태 코드 | 코드 | 메시지 | 설명 |\n| --- | --- | --- | --- | --- |\n| UNKNOWN | 500 | 1 | Unknown | 알 수 없는 에러 |\n| UNAUTHORIZED_ERROR | 403 | 23150 | Unauthorized | 권한 없음 |\n| INTERNAL_SERVER_ERROR | 500 | 23500 | Internal server error | 서버 내부 에러 |\n| REQUEST_NOT_VALID | 400 | 23400 | Request not valid | 요청 validation 실패 |\n| NO_WALLET_ERROR | 400 | 23001 | No wallet connection | 지갑 주소가 없음 |\n| ALREADY_OWNED_ERROR | 400 | 23002 | Already owned | 이미 소유한 NFT |\n| NO_REQUEST_ID_ERROR | 400 | 23003 | No requestId | Request Id 없음 |\n"
   },
-  "servers": [
+  "servers":[
     {
-      "url": "/"
+      "url":"/"
     }
   ],
-  "paths": {
-    "/v1/nft/mint/{requestId}": {
-      "post": {
-        "tags": [
+  "paths":{
+    "/v1/nft/mint/{requestId}":{
+      "post":{
+        "tags":[
           "OnOffRamp"
         ],
-        "summary": "게임 아이템 NFT 발행",
-        "description": "게임 아이템 NFT를 발행합니다.",
-        "operationId": "mintNft",
-        "parameters": [
+        "summary":"게임 아이템 NFT 발행",
+        "description":"게임 아이템 NFT를 발행합니다.",
+        "operationId":"mintNft",
+        "parameters":[
           {
-            "name": "requestId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
+            "name":"requestId",
+            "in":"path",
+            "required":true,
+            "schema":{
+              "type":"string"
             }
           }
         ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/RequestNftMintDto"
+        "requestBody":{
+          "content":{
+            "application/json":{
+              "schema":{
+                "$ref":"#/components/schemas/RequestNftMintDto"
               }
             }
           },
-          "required": true
+          "required":true
         },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/OvertakeResponseNftMintResponseDto"
+        "responses":{
+          "200":{
+            "description":"OK",
+            "content":{
+              "*/*":{
+                "schema":{
+                  "$ref":"#/components/schemas/OvertakeResponseNftMintResponseDto"
                 }
               }
             }
           },
-          "400": {
-            "description": "리퀘스트 ID 없음",
-            "content": {
-              "*/*": {
-                "examples": {
-                  "NO_REQUEST_ID_ERROR": {
-                    "description": "NO_REQUEST_ID_ERROR"
+          "400":{
+            "description":"사용자 지갑 없음",
+            "content":{
+              "*/*":{
+                "examples":{
+                  "NO_WALLET_ERROR":{
+                    "description":"NO_WALLET_ERROR"
                   }
                 }
               }
             }
           },
-          "403": {
-            "description": "권한 에러",
-            "content": {
-              "*/*": {
-                "examples": {
-                  "UNAUTHORIZED_ERROR": {
-                    "description": "UNAUTHORIZED_ERROR"
+          "403":{
+            "description":"권한 에러",
+            "content":{
+              "*/*":{
+                "examples":{
+                  "UNAUTHORIZED_ERROR":{
+                    "description":"UNAUTHORIZED_ERROR"
                   }
                 }
               }
             }
           },
-          "500": {
-            "description": "Internal Server Error",
-            "content": {
-              "*/*": {
-                "examples": {
-                  "UNKNOWN": {
-                    "description": "UNKNOWN"
+          "500":{
+            "description":"Internal Server Error",
+            "content":{
+              "*/*":{
+                "examples":{
+                  "UNKNOWN":{
+                    "description":"UNKNOWN"
                   }
                 }
               }
             }
           }
         },
-        "security": [
+        "security":[
           {
-            "partnerId": [
+            "partnerId":[
 
             ]
           }
         ]
       }
     },
-    "/v1/nft/{userId}": {
-      "get": {
-        "tags": [
+    "/v1/nft/burn/sync":{
+      "post":{
+        "tags":[
           "OnOffRamp"
         ],
-        "summary": "유저가 보유한 NFT 목록",
-        "description": "유저가 보유한 NFT 목록을 조회 합니다.",
-        "operationId": "getUserNftInfo",
-        "parameters": [
-          {
-            "name": "userId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
+        "summary":"Burn된 사용자 NFT 마지막 목록을 동기화",
+        "description":"Burn된 사용자 NFT 마지막 목록을 동기화 합니다.",
+        "operationId":"syncBurnInfo",
+        "requestBody":{
+          "content":{
+            "application/json":{
+              "schema":{
+                "$ref":"#/components/schemas/RequestBurnInfoSyncDto"
+              }
             }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/OvertakeResponseListNftBurnInfoResponseDto"
+          },
+          "required":true
+        },
+        "responses":{
+          "200":{
+            "description":"OK",
+            "content":{
+              "*/*":{
+                "schema":{
+                  "$ref":"#/components/schemas/OvertakeResponseBurnInfoSyncResponseDto"
                 }
               }
             }
           },
-          "400": {
-            "description": "리퀘스트 ID 없음",
-            "content": {
-              "*/*": {
-                "examples": {
-                  "NO_REQUEST_ID_ERROR": {
-                    "description": "NO_REQUEST_ID_ERROR"
+          "400":{
+            "description":"사용자 지갑 없음",
+            "content":{
+              "*/*":{
+                "examples":{
+                  "NO_WALLET_ERROR":{
+                    "description":"NO_WALLET_ERROR"
                   }
                 }
               }
             }
           },
-          "403": {
-            "description": "권한 에러",
-            "content": {
-              "*/*": {
-                "examples": {
-                  "UNAUTHORIZED_ERROR": {
-                    "description": "UNAUTHORIZED_ERROR"
+          "403":{
+            "description":"권한 에러",
+            "content":{
+              "*/*":{
+                "examples":{
+                  "UNAUTHORIZED_ERROR":{
+                    "description":"UNAUTHORIZED_ERROR"
                   }
                 }
               }
             }
           },
-          "500": {
-            "description": "Internal Server Error",
-            "content": {
-              "*/*": {
-                "examples": {
-                  "UNKNOWN": {
-                    "description": "UNKNOWN"
+          "500":{
+            "description":"Internal Server Error",
+            "content":{
+              "*/*":{
+                "examples":{
+                  "UNKNOWN":{
+                    "description":"UNKNOWN"
                   }
                 }
               }
             }
           }
         },
-        "security": [
+        "security":[
           {
-            "partnerId": [
+            "partnerId":[
 
             ]
           }
         ]
       }
     },
-    "/v1/nft/status/{requestId}": {
-      "get": {
-        "tags": [
+    "/v1/nft/{userId}":{
+      "get":{
+        "tags":[
           "OnOffRamp"
         ],
-        "summary": "게임 아이템 NFT 발행 진행 상태 확인",
-        "description": "게임 아이템 NFT 발행 상태를 조회 합니다.",
-        "operationId": "getNftStatus",
-        "parameters": [
+        "summary":"유저가 보유한 NFT 목록",
+        "description":"유저가 보유한 NFT 목록을 조회 합니다.",
+        "operationId":"getUserNftInfo",
+        "parameters":[
           {
-            "name": "requestId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
+            "name":"userId",
+            "in":"path",
+            "required":true,
+            "schema":{
+              "type":"string"
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/OvertakeResponseNftMintStatusResponseDto"
+        "responses":{
+          "200":{
+            "description":"OK",
+            "content":{
+              "*/*":{
+                "schema":{
+                  "$ref":"#/components/schemas/OvertakeResponseListUserNftInfoResponseDto"
                 }
               }
             }
           },
-          "400": {
-            "description": "리퀘스트 ID 없음",
-            "content": {
-              "*/*": {
-                "examples": {
-                  "NO_REQUEST_ID_ERROR": {
-                    "description": "NO_REQUEST_ID_ERROR"
+          "400":{
+            "description":"사용자 지갑 없음",
+            "content":{
+              "*/*":{
+                "examples":{
+                  "NO_WALLET_ERROR":{
+                    "description":"NO_WALLET_ERROR"
                   }
                 }
               }
             }
           },
-          "403": {
-            "description": "권한 에러",
-            "content": {
-              "*/*": {
-                "examples": {
-                  "UNAUTHORIZED_ERROR": {
-                    "description": "UNAUTHORIZED_ERROR"
+          "403":{
+            "description":"권한 에러",
+            "content":{
+              "*/*":{
+                "examples":{
+                  "UNAUTHORIZED_ERROR":{
+                    "description":"UNAUTHORIZED_ERROR"
                   }
                 }
               }
             }
           },
-          "500": {
-            "description": "Internal Server Error",
-            "content": {
-              "*/*": {
-                "examples": {
-                  "UNKNOWN": {
-                    "description": "UNKNOWN"
+          "500":{
+            "description":"Internal Server Error",
+            "content":{
+              "*/*":{
+                "examples":{
+                  "UNKNOWN":{
+                    "description":"UNKNOWN"
                   }
                 }
               }
             }
           }
         },
-        "security": [
+        "security":[
           {
-            "partnerId": [
+            "partnerId":[
 
             ]
           }
         ]
       }
     },
-    "/v1/nft/burn/{userId}": {
-      "get": {
-        "tags": [
+    "/v1/nft/status/{requestId}":{
+      "get":{
+        "tags":[
           "OnOffRamp"
         ],
-        "summary": "Burn된 사용자의 NFT 목록 조회",
-        "description": "Burn된 사용자의 NFT 목록 조회합니다.",
-        "operationId": "getBurnInfo",
-        "parameters": [
+        "summary":"게임 아이템 NFT 발행 진행 상태 확인",
+        "description":"게임 아이템 NFT 발행 상태를 조회 합니다.",
+        "operationId":"getNftStatus",
+        "parameters":[
           {
-            "name": "userId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
+            "name":"requestId",
+            "in":"path",
+            "required":true,
+            "schema":{
+              "type":"string"
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/OvertakeResponseListNftBurnInfoResponseDto"
+        "responses":{
+          "200":{
+            "description":"OK",
+            "content":{
+              "*/*":{
+                "schema":{
+                  "$ref":"#/components/schemas/OvertakeResponseNftMintStatusResponseDto"
                 }
               }
             }
           },
-          "400": {
-            "description": "리퀘스트 ID 없음",
-            "content": {
-              "*/*": {
-                "examples": {
-                  "NO_REQUEST_ID_ERROR": {
-                    "description": "NO_REQUEST_ID_ERROR"
+          "400":{
+            "description":"사용자 지갑 없음",
+            "content":{
+              "*/*":{
+                "examples":{
+                  "NO_WALLET_ERROR":{
+                    "description":"NO_WALLET_ERROR"
                   }
                 }
               }
             }
           },
-          "403": {
-            "description": "권한 에러",
-            "content": {
-              "*/*": {
-                "examples": {
-                  "UNAUTHORIZED_ERROR": {
-                    "description": "UNAUTHORIZED_ERROR"
+          "403":{
+            "description":"권한 에러",
+            "content":{
+              "*/*":{
+                "examples":{
+                  "UNAUTHORIZED_ERROR":{
+                    "description":"UNAUTHORIZED_ERROR"
                   }
                 }
               }
             }
           },
-          "500": {
-            "description": "Internal Server Error",
-            "content": {
-              "*/*": {
-                "examples": {
-                  "UNKNOWN": {
-                    "description": "UNKNOWN"
+          "500":{
+            "description":"Internal Server Error",
+            "content":{
+              "*/*":{
+                "examples":{
+                  "UNKNOWN":{
+                    "description":"UNKNOWN"
                   }
                 }
               }
             }
           }
         },
-        "security": [
+        "security":[
           {
-            "partnerId": [
+            "partnerId":[
+
+            ]
+          }
+        ]
+      }
+    },
+    "/v1/nft/burn":{
+      "get":{
+        "tags":[
+          "OnOffRamp"
+        ],
+        "summary":"Burn된 사용자의 NFT 목록 조회",
+        "description":"Burn된 사용자의 NFT 목록 조회합니다.",
+        "operationId":"getBurnInfo",
+        "responses":{
+          "200":{
+            "description":"OK",
+            "content":{
+              "*/*":{
+                "schema":{
+                  "$ref":"#/components/schemas/OvertakeResponseNftBurnInfoResponseDto"
+                }
+              }
+            }
+          },
+          "400":{
+            "description":"사용자 지갑 없음",
+            "content":{
+              "*/*":{
+                "examples":{
+                  "NO_WALLET_ERROR":{
+                    "description":"NO_WALLET_ERROR"
+                  }
+                }
+              }
+            }
+          },
+          "403":{
+            "description":"권한 에러",
+            "content":{
+              "*/*":{
+                "examples":{
+                  "UNAUTHORIZED_ERROR":{
+                    "description":"UNAUTHORIZED_ERROR"
+                  }
+                }
+              }
+            }
+          },
+          "500":{
+            "description":"Internal Server Error",
+            "content":{
+              "*/*":{
+                "examples":{
+                  "UNKNOWN":{
+                    "description":"UNKNOWN"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security":[
+          {
+            "partnerId":[
 
             ]
           }
@@ -321,248 +386,347 @@
       }
     }
   },
-  "components": {
-    "schemas": {
-      "Attributes": {
-        "required": [
-          "trait_type",
-          "value"
-        ],
-        "type": "object",
-        "properties": {
-          "trait_type": {
-            "type": "string"
+  "components":{
+    "schemas":{
+      "Attributes":{
+        "type":"object",
+        "properties":{
+          "traitType":{
+            "type":"string"
           },
-          "value": {
-            "type": "string"
+          "value":{
+            "type":"string"
           }
         }
       },
-      "Items": {
-        "required": [
+      "Items":{
+        "required":[
           "amount",
-          "contractAddress",
-          "memberUid",
+          "itemId",
+          "itemType",
           "metadata",
-          "tokenId"
+          "userId"
         ],
-        "type": "object",
-        "properties": {
-          "metadata": {
-            "$ref": "#/components/schemas/MetaData"
+        "type":"object",
+        "properties":{
+          "userId":{
+            "type":"string",
+            "description":"멤버 유저 아이디"
           },
-          "amount": {
-            "type": "integer",
-            "description": "수량"
+          "metadata":{
+            "$ref":"#/components/schemas/MetaData"
           },
-          "contractAddress": {
-            "type": "string",
-            "description": "컨트랙트 주소"
+          "amount":{
+            "type":"integer",
+            "description":"수량"
           },
-          "memberUid": {
-            "type": "string",
-            "description": "멤버 유저 아이디"
+          "itemType":{
+            "type":"string",
+            "description":"아이템 타입"
           },
-          "tokenId": {
-            "type": "integer",
-            "description": "토큰 아이디"
+          "itemId":{
+            "type":"string",
+            "description":"아이템 아이디"
           }
         },
-        "description": "NFT화 할 Item 목록"
+        "description":"NFT화 할 Item 목록"
       },
-      "MetaData": {
-        "required": [
+      "MetaData":{
+        "required":[
           "attributes",
           "description",
-          "image",
           "name"
         ],
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string"
+        "type":"object",
+        "properties":{
+          "name":{
+            "type":"string"
           },
-          "description": {
-            "type": "string"
+          "description":{
+            "type":"string"
           },
-          "image": {
-            "type": "string"
+          "image":{
+            "type":"string"
           },
-          "attributes": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Attributes"
+          "attributes":{
+            "type":"array",
+            "items":{
+              "$ref":"#/components/schemas/Attributes"
             }
           },
-          "external_url": {
-            "type": "string"
+          "externalUrl":{
+            "type":"string"
           },
-          "animation_url": {
-            "type": "string"
+          "animationUrl":{
+            "type":"string"
           },
-          "youtube_url": {
-            "type": "string"
+          "youtubeUrl":{
+            "type":"string"
           }
         },
-        "description": "metadata OPENSEA 스펙"
+        "description":"metadata Immutable 스펙"
       },
-      "RequestNftMintDto": {
-        "required": [
+      "RequestNftMintDto":{
+        "required":[
           "items"
         ],
-        "type": "object",
-        "properties": {
-          "items": {
-            "type": "array",
-            "description": "NFT화 할 Item 목록",
-            "items": {
-              "$ref": "#/components/schemas/Items"
+        "type":"object",
+        "properties":{
+          "items":{
+            "type":"array",
+            "description":"NFT화 할 Item 목록",
+            "items":{
+              "$ref":"#/components/schemas/Items"
             }
           }
         }
       },
-      "ErrorMessage": {
-        "required": [
+      "ErrorMessage":{
+        "required":[
           "code",
           "message"
         ],
-        "type": "object",
-        "properties": {
-          "code": {
-            "type": "integer",
-            "description": "에러 코드",
-            "format": "int32"
+        "type":"object",
+        "properties":{
+          "code":{
+            "type":"integer",
+            "description":"에러 코드",
+            "format":"int32"
           },
-          "message": {
-            "type": "string",
-            "description": "에러 메세지"
+          "message":{
+            "type":"string",
+            "description":"에러 메세지"
           }
         },
-        "description": "에러 response"
+        "description":"에러 response"
       },
-      "NftMintResponseDto": {
-        "required": [
+      "NftMintResponseDto":{
+        "required":[
           "requestId"
         ],
-        "type": "object",
-        "properties": {
-          "requestId": {
-            "type": "string",
-            "description": "요청 아이디"
+        "type":"object",
+        "properties":{
+          "requestId":{
+            "type":"string",
+            "description":"요청 아이디"
           }
         },
-        "description": "트랜잭션 해시"
+        "description":"트랜잭션 해시"
       },
-      "OvertakeResponseNftMintResponseDto": {
-        "required": [
+      "OvertakeResponseNftMintResponseDto":{
+        "required":[
           "payload"
         ],
-        "type": "object",
-        "properties": {
-          "error": {
-            "$ref": "#/components/schemas/ErrorMessage"
+        "type":"object",
+        "properties":{
+          "error":{
+            "$ref":"#/components/schemas/ErrorMessage"
           },
-          "payload": {
-            "$ref": "#/components/schemas/NftMintResponseDto"
+          "payload":{
+            "$ref":"#/components/schemas/NftMintResponseDto"
           }
         },
-        "description": "플랫폼 공통 Response 객체"
+        "description":"플랫폼 공통 Response 객체"
       },
-      "NftBurnInfoResponseDto": {
-        "required": [
+      "RequestBurnInfoSyncDto":{
+        "required":[
+          "lastSyncId"
+        ],
+        "type":"object",
+        "properties":{
+          "lastSyncId":{
+            "type":"integer",
+            "format":"int64"
+          }
+        }
+      },
+      "BurnInfoSyncResponseDto":{
+        "required":[
+          "lastSyncId"
+        ],
+        "type":"object",
+        "properties":{
+          "lastSyncId":{
+            "type":"integer",
+            "description":"Sync된 마지막 아이디",
+            "format":"int64"
+          }
+        },
+        "description":"Burn NFT Sync 정보 응답"
+      },
+      "OvertakeResponseBurnInfoSyncResponseDto":{
+        "required":[
+          "payload"
+        ],
+        "type":"object",
+        "properties":{
+          "error":{
+            "$ref":"#/components/schemas/ErrorMessage"
+          },
+          "payload":{
+            "$ref":"#/components/schemas/BurnInfoSyncResponseDto"
+          }
+        },
+        "description":"플랫폼 공통 Response 객체"
+      },
+      "OvertakeResponseListUserNftInfoResponseDto":{
+        "required":[
+          "payload"
+        ],
+        "type":"object",
+        "properties":{
+          "error":{
+            "$ref":"#/components/schemas/ErrorMessage"
+          },
+          "payload":{
+            "type":"array",
+            "description":"요청 성공시의 응답 본문",
+            "items":{
+              "$ref":"#/components/schemas/UserNftInfoResponseDto"
+            }
+          }
+        },
+        "description":"플랫폼 공통 Response 객체"
+      },
+      "UserNftInfoResponseDto":{
+        "required":[
+          "itemId",
+          "itemType",
+          "metadata",
+          "tokenId"
+        ],
+        "type":"object",
+        "properties":{
+          "itemType":{
+            "type":"string",
+            "description":"아이템 타입"
+          },
+          "itemId":{
+            "type":"string",
+            "description":"아이템 아이디"
+          },
+          "tokenId":{
+            "type":"integer",
+            "description":"토큰 아이디"
+          },
+          "metadata":{
+            "$ref":"#/components/schemas/MetaData"
+          }
+        },
+        "description":"User 보유 NFT 정보 응답"
+      },
+      "NftMintStatusResponseDto":{
+        "required":[
+          "status"
+        ],
+        "type":"object",
+        "properties":{
+          "status":{
+            "type":"string",
+            "description":"NFT mint 상태"
+          }
+        },
+        "description":"NFT mint 상태 응답"
+      },
+      "OvertakeResponseNftMintStatusResponseDto":{
+        "required":[
+          "payload"
+        ],
+        "type":"object",
+        "properties":{
+          "error":{
+            "$ref":"#/components/schemas/ErrorMessage"
+          },
+          "payload":{
+            "$ref":"#/components/schemas/NftMintStatusResponseDto"
+          }
+        },
+        "description":"플랫폼 공통 Response 객체"
+      },
+      "NftBurnInfoDetailsResponseDto":{
+        "required":[
           "itemId",
           "itemType",
           "metadata",
           "tokenId",
           "userId"
         ],
-        "type": "object",
-        "properties": {
-          "userId": {
-            "type": "string",
-            "description": "지갑 주소"
+        "type":"object",
+        "properties":{
+          "userId":{
+            "type":"string",
+            "description":"지갑 주소"
           },
-          "itemType": {
-            "type": "string",
-            "description": "아이템 타입"
+          "itemType":{
+            "type":"string",
+            "description":"아이템 타입"
           },
-          "itemId": {
-            "type": "string",
-            "description": "아이템 아이디"
+          "itemId":{
+            "type":"string",
+            "description":"아이템 아이디"
           },
-          "tokenId": {
-            "type": "integer",
-            "description": "토큰 아이디"
+          "tokenId":{
+            "type":"integer",
+            "description":"토큰 아이디"
           },
-          "metadata": {
-            "$ref": "#/components/schemas/MetaData"
+          "metadata":{
+            "$ref":"#/components/schemas/MetaData"
           }
         },
-        "description": "Burn NFT 정보 응답"
+        "description":"Burn NFT 정보 응답"
       },
-      "OvertakeResponseListNftBurnInfoResponseDto": {
-        "required": [
-          "payload"
+      "NftBurnInfoResponseDto":{
+        "required":[
+          "details",
+          "lastSyncId"
         ],
-        "type": "object",
-        "properties": {
-          "error": {
-            "$ref": "#/components/schemas/ErrorMessage"
+        "type":"object",
+        "properties":{
+          "lastSyncId":{
+            "type":"integer",
+            "description":"Sync된 마지막 아이디"
           },
-          "payload": {
-            "type": "array",
-            "description": "요청 성공시의 응답 본문",
-            "items": {
-              "$ref": "#/components/schemas/NftBurnInfoResponseDto"
+          "details":{
+            "type":"array",
+            "description":"상세 내역",
+            "items":{
+              "$ref":"#/components/schemas/NftBurnInfoDetailsResponseDto"
             }
           }
         },
-        "description": "플랫폼 공통 Response 객체"
+        "description":"Burn NFT 정보 응답"
       },
-      "NftMintStatusResponseDto": {
-        "required": [
-          "status"
-        ],
-        "type": "object",
-        "properties": {
-          "status": {
-            "type": "string",
-            "description": "NFT mint 상태"
-          }
-        },
-        "description": "NFT mint 상태 응답"
-      },
-      "OvertakeResponseNftMintStatusResponseDto": {
-        "required": [
+      "OvertakeResponseNftBurnInfoResponseDto":{
+        "required":[
           "payload"
         ],
-        "type": "object",
-        "properties": {
-          "error": {
-            "$ref": "#/components/schemas/ErrorMessage"
+        "type":"object",
+        "properties":{
+          "error":{
+            "$ref":"#/components/schemas/ErrorMessage"
           },
-          "payload": {
-            "$ref": "#/components/schemas/NftMintStatusResponseDto"
+          "payload":{
+            "$ref":"#/components/schemas/NftBurnInfoResponseDto"
           }
         },
-        "description": "플랫폼 공통 Response 객체"
+        "description":"플랫폼 공통 Response 객체"
       }
     },
-    "securitySchemes": {
-      "memberUid": {
-        "type": "apiKey",
-        "name": "X-OTTM-MEMBER-UID",
-        "in": "header"
+    "securitySchemes":{
+      "memberUid":{
+        "type":"apiKey",
+        "name":"X-OTTM-MEMBER-UID",
+        "in":"header"
       },
-      "walletAddress": {
-        "type": "apiKey",
-        "name": "X-OTTM-MEMBER-WALLET-ADDRESS",
-        "in": "header"
+      "walletAddress":{
+        "type":"apiKey",
+        "name":"X-OTTM-MEMBER-WALLET-ADDRESS",
+        "in":"header"
       },
-      "partnerId": {
-        "type": "apiKey",
-        "name": "X-OTTM-PARTNER-ID",
-        "in": "header"
+      "partnerId":{
+        "type":"apiKey",
+        "name":"X-OTTM-PARTNER-ID",
+        "in":"header"
       }
     }
   }
