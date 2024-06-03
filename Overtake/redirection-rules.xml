@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rules SYSTEM "https://resources.jetbrains.com/writerside/1.0/redirection-rules.dtd">
+<rules>
+    <!-- format is as follows
+    <rule id="<unique id>">
+        <accepts>page.html</accepts>
+    </rule>
+    -->
+    <rule id="780c78fb">
+        <description>Created after removal of "Burn된 사용자의 NFT 목록 조회" from Ottm Platform developer docs</description>
+        <accepts>Burn된_사용자의_NFT_목록_조회.html</accepts>
+    </rule>
+    <rule id="5a073cbb">
+        <description>Created after removal of "게임 아이템 NFT 발행 진행 상태 확인" from Ottm Platform developer docs</description>
+        <accepts>게임_아이템_NFT_발행_진행_상태_확인.html</accepts>
+    </rule>
+    <rule id="2d695ef4">
+        <description>Created after removal of "유저가 보유한 NFT 목록" from Ottm Platform developer docs</description>
+        <accepts>유저가_보유한_NFT_목록.html</accepts>
+    </rule>
+    <rule id="5b9b5195">
+        <description>Created after removal of "게임 아이템 NFT 발행" from Ottm Platform developer docs</description>
+        <accepts>게임_아이템_NFT_발행.html</accepts>
+    </rule>
+    <rule id="69702605">
+        <description>Created after removal of "API Reference" from Ottm Platform developer docs</description>
+        <accepts>API_Reference2.html</accepts>
+    </rule>
+    <rule id="d5b1fb1">
+        <description>Created after removal of "Burn된 사용자의 NFT 목록 조회" from Ottm Platform developer docs</description>
+        <accepts>Burn된_사용자의_NFT_목록_조회2.html</accepts>
+    </rule>
+    <rule id="58548b02">
+        <description>Created after removal of "게임 아이템 NFT 발행 진행 상태 확인" from Ottm Platform developer docs</description>
+        <accepts>게임_아이템_NFT_발행_진행_상태_확인2.html</accepts>
+    </rule>
+    <rule id="2c60fba7">
+        <description>Created after removal of "유저가 보유한 NFT 목록" from Ottm Platform developer docs</description>
+        <accepts>유저가_보유한_NFT_목록2.html</accepts>
+    </rule>
+    <rule id="51714f8e">
+        <description>Created after removal of "Burn된 사용자 NFT 마지막 목록을 동기화" from Ottm Platform developer docs
+        </description>
+        <accepts>Burn된_사용자_NFT_마지막_목록을_동기화.html</accepts>
+    </rule>
+    <rule id="132f5d5a">
+        <description>Created after removal of "게임 아이템 NFT 발행" from Ottm Platform developer docs</description>
+        <accepts>게임_아이템_NFT_발행2.html</accepts>
+    </rule>
+    <rule id="89f0d04">
+        <description>Created after removal of "API Reference" from Ottm Platform developer docs</description>
+        <accepts>API_Reference3.html</accepts>
+    </rule>
+</rules>
