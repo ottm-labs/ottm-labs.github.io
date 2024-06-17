@@ -76,4 +76,8 @@
         <description>Created after removal of "API Reference" from Ottm Platform developer docs</description>
         <accepts>API_Reference2.html</accepts>
     </rule>
+    <rule id="7e31ad28">
+        <description>Created after removal of "2024-06-17" from Ottm Platform developer docs</description>
+        <accepts>2024-06-17.html</accepts>
+    </rule>
 </rules>
