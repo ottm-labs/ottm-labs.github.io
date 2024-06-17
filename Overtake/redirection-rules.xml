@@ -51,4 +51,33 @@
         <description>Created after removal of "API Reference" from Ottm Platform developer docs</description>
         <accepts>API_Reference3.html</accepts>
     </rule>
+    <rule id="5c6785f1">
+        <description>Created after removal of "Burn된 사용자의 NFT 목록 조회" from Ottm Platform developer docs</description>
+        <accepts>Burn된_사용자의_NFT_목록_조회.html</accepts>
+    </rule>
+    <rule id="6f30d6c1">
+        <description>Created after removal of "게임 아이템 NFT 발행 진행 상태 확인" from Ottm Platform developer docs</description>
+        <accepts>게임_아이템_NFT_발행_진행_상태_확인.html</accepts>
+    </rule>
+    <rule id="614b6eaa">
+        <description>Created after removal of "유저가 보유한 NFT 목록" from Ottm Platform developer docs</description>
+        <accepts>유저가_보유한_NFT_목록.html</accepts>
+    </rule>
+    <rule id="33c663ef">
+        <description>Created after removal of "Burn된 사용자 NFT 마지막 목록을 동기화" from Ottm Platform developer docs
+        </description>
+        <accepts>Burn된_사용자_NFT_마지막_목록을_동기화2.html</accepts>
+    </rule>
+    <rule id="5c3ba08e">
+        <description>Created after removal of "게임 아이템 NFT 발행" from Ottm Platform developer docs</description>
+        <accepts>게임_아이템_NFT_발행.html</accepts>
+    </rule>
+    <rule id="38343c38">
+        <description>Created after removal of "API Reference" from Ottm Platform developer docs</description>
+        <accepts>API_Reference2.html</accepts>
+    </rule>
+    <rule id="7e31ad28">
+        <description>Created after removal of "2024-06-17" from Ottm Platform developer docs</description>
+        <accepts>2024-06-17.html</accepts>
+    </rule>
 </rules>
