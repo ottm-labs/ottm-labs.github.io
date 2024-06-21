@@ -53,7 +53,7 @@
 - 1*** : 데이터 운영/관리를 위한 값
 - 2*** : 사용자 업적 검증값으로 사용될 값
 
-#### DB Table 생성 예시 코드 (MySql) {collapsible="true"}
+#### DB Table 생성 예시 코드 (MySql)
 ```SQL
 create table somnis_player_stats
 (
