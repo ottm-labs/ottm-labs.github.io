@@ -1,4 +1,4 @@
-# 유저 업적 정보 등록(Achievement)
+# [DEPRECATED] 유저 업적 정보 등록(Achievement)
 > [Open Api ui](%partner-api-base%/achievement/swagger-ui/index.html)
 ### 개요
 
