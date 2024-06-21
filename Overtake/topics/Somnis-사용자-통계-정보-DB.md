@@ -49,6 +49,10 @@
 | 2037 | item_purchase_cnt                     | 누적 상점 아이템 구매 횟수              | int          | 상점 구매                                 |              |
 | 2038 | blueprint_draw_cnt                    | 누적 도안 가챠 진행 횟수                | int          | 도안 가챠 진행                            |              |
 
+#### 필드 ID 설명
+- 1*** : 데이터 운영/관리를 위한 값
+- 2*** : 사용자 업적 검증값으로 사용될 값
+
 #### DB Table 생성 예시 코드 (MySql) {collapsible="true"}
 ```SQL
 create table somnis_player_stats
