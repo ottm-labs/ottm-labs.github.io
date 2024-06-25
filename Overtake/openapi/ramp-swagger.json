@@ -186,6 +186,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "cursorQuery",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/OttmCursorQuery"
+            }
           }
         ],
         "responses": {
@@ -194,7 +202,7 @@
             "content": {
               "*/*": {
                 "schema": {
-                  "$ref": "#/components/schemas/OvertakeResponseListUserNftInfoResponseDto"
+                  "$ref": "#/components/schemas/OvertakeResponseOttmCursorPageItems"
                 }
               }
             }
@@ -391,7 +399,7 @@
       "Attributes": {
         "type": "object",
         "properties": {
-          "trait_type": {
+          "traitType": {
             "type": "string"
           },
           "value": {
@@ -454,13 +462,13 @@
               "$ref": "#/components/schemas/Attributes"
             }
           },
-          "external_url": {
+          "externalUrl": {
             "type": "string"
           },
-          "animation_url": {
+          "animationUrl": {
             "type": "string"
           },
-          "youtube_url": {
+          "youtubeUrl": {
             "type": "string"
           }
         },
@@ -514,9 +522,6 @@
         "description": "트랜잭션 해시"
       },
       "OvertakeResponseNftMintResponseDto": {
-        "required": [
-          "payload"
-        ],
         "type": "object",
         "properties": {
           "error": {
@@ -555,9 +560,6 @@
         "description": "Burn NFT Sync 정보 응답"
       },
       "OvertakeResponseBurnInfoSyncResponseDto": {
-        "required": [
-          "payload"
-        ],
         "type": "object",
         "properties": {
           "error": {
@@ -569,51 +571,69 @@
         },
         "description": "플랫폼 공통 Response 객체"
       },
-      "OvertakeResponseListUserNftInfoResponseDto": {
+      "OttmCursorQuery": {
         "required": [
-          "payload"
+          "size"
         ],
+        "type": "object",
+        "properties": {
+          "cursor": {
+            "type": "string"
+          },
+          "size": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "OttmCursorPageItems": {
+        "required": [
+          "content",
+          "hasNext",
+          "itemsPerPage",
+          "total"
+        ],
+        "type": "object",
+        "properties": {
+          "content": {
+            "type": "array",
+            "description": "내용",
+            "items": {
+              "$ref": "#/components/schemas/Items"
+            }
+          },
+          "itemsPerPage": {
+            "type": "integer",
+            "description": "페이지 당 아이템 수",
+            "format": "int64"
+          },
+          "hasNext": {
+            "type": "boolean",
+            "description": "다음 페이지 존재 여부"
+          },
+          "total": {
+            "type": "integer",
+            "description": "전체 아이템 수",
+            "format": "int64"
+          },
+          "nextCursor": {
+            "type": "string",
+            "description": "다음 커서"
+          }
+        },
+        "description": "요청 성공시의 응답 본문"
+      },
+      "OvertakeResponseOttmCursorPageItems": {
         "type": "object",
         "properties": {
           "error": {
             "$ref": "#/components/schemas/ErrorMessage"
           },
           "payload": {
-            "type": "array",
-            "description": "요청 성공시의 응답 본문",
-            "items": {
-              "$ref": "#/components/schemas/UserNftInfoResponseDto"
-            }
+            "$ref": "#/components/schemas/OttmCursorPageItems"
           }
         },
         "description": "플랫폼 공통 Response 객체"
-      },
-      "UserNftInfoResponseDto": {
-        "required": [
-          "itemId",
-          "itemType",
-          "metadata",
-          "tokenId"
-        ],
-        "type": "object",
-        "properties": {
-          "itemType": {
-            "type": "string",
-            "description": "아이템 타입"
-          },
-          "itemId": {
-            "type": "string",
-            "description": "아이템 아이디"
-          },
-          "tokenId": {
-            "type": "integer",
-            "description": "토큰 아이디"
-          },
-          "metadata": {
-            "$ref": "#/components/schemas/MetaData"
-          }
-        },
-        "description": "User 보유 NFT 정보 응답"
       },
       "NftMintStatusResponseDto": {
         "required": [
@@ -629,9 +649,6 @@
         "description": "NFT mint 상태 응답"
       },
       "OvertakeResponseNftMintStatusResponseDto": {
-        "required": [
-          "payload"
-        ],
         "type": "object",
         "properties": {
           "error": {
@@ -666,7 +683,7 @@
             "description": "아이템 아이디"
           },
           "tokenId": {
-            "type": "integer",
+            "type": "string",
             "description": "토큰 아이디"
           },
           "metadata": {
@@ -697,9 +714,6 @@
         "description": "Burn NFT 정보 응답"
       },
       "OvertakeResponseNftBurnInfoResponseDto": {
-        "required": [
-          "payload"
-        ],
         "type": "object",
         "properties": {
           "error": {
