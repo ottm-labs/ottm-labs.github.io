@@ -8,6 +8,7 @@
     <toc-element topic="Overview.md" />
     <toc-element topic="Variables.md"/>
     <toc-element topic="변경내역.md">
+        <toc-element topic="2024-06-25.md"/>
         <toc-element topic="2024-06-20.md"/>
         <toc-element topic="2024-06-17.md"/>
         <toc-element topic="2024-06-03.md"/>
@@ -30,6 +31,7 @@
         </toc-element>
     </toc-element>
     <toc-element topic="업적.md">
+        <toc-element topic="Somnis-사용자-통계-정보-DB.md"/>
         <toc-element topic="업적-정보-연동-Achievement.md">
             <toc-element topic="API_Reference.md">
                 <toc-element topic="OTTM_멤버_업적_입력.md"/>
