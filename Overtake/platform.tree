@@ -8,6 +8,7 @@
     <toc-element topic="Overview.md" />
     <toc-element topic="Variables.md"/>
     <toc-element topic="변경내역.md">
+        <toc-element topic="2024-07-04.md"/>
         <toc-element topic="2024-06-27.md"/>
         <toc-element topic="2024-06-25.md">
         </toc-element>
