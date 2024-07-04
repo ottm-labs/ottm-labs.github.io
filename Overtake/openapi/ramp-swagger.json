@@ -399,7 +399,7 @@
       "Attributes": {
         "type": "object",
         "properties": {
-          "traitType": {
+          "trait_type": {
             "type": "string"
           },
           "value": {
@@ -435,6 +435,10 @@
           "itemId": {
             "type": "string",
             "description": "아이템 아이디"
+          },
+          "extraField": {
+            "type": "string",
+            "description": "아이템 추가 정보"
           }
         },
         "description": "NFT화 할 Item 목록"
@@ -462,13 +466,13 @@
               "$ref": "#/components/schemas/Attributes"
             }
           },
-          "externalUrl": {
+          "external_url": {
             "type": "string"
           },
-          "animationUrl": {
+          "animation_url": {
             "type": "string"
           },
-          "youtubeUrl": {
+          "youtube_url": {
             "type": "string"
           }
         },
@@ -578,11 +582,12 @@
         "type": "object",
         "properties": {
           "cursor": {
-            "type": "string"
+            "type": "integer",
+            "format": "int32"
           },
           "size": {
             "type": "integer",
-            "format": "int64"
+            "format": "int32"
           }
         }
       },
@@ -605,7 +610,7 @@
           "itemsPerPage": {
             "type": "integer",
             "description": "페이지 당 아이템 수",
-            "format": "int64"
+            "format": "int32"
           },
           "hasNext": {
             "type": "boolean",
@@ -617,8 +622,9 @@
             "format": "int64"
           },
           "nextCursor": {
-            "type": "string",
-            "description": "다음 커서"
+            "type": "integer",
+            "description": "다음 커서",
+            "format": "int32"
           }
         },
         "description": "요청 성공시의 응답 본문"
@@ -662,6 +668,7 @@
       },
       "NftBurnInfoDetailsResponseDto": {
         "required": [
+          "extraField",
           "itemId",
           "itemType",
           "metadata",
@@ -681,6 +688,10 @@
           "itemId": {
             "type": "string",
             "description": "아이템 아이디"
+          },
+          "extraField": {
+            "type": "string",
+            "description": "아이템 추가 정보"
           },
           "tokenId": {
             "type": "string",
