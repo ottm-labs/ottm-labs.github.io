@@ -8,6 +8,7 @@
     <toc-element topic="Overview.md" />
     <toc-element topic="Variables.md"/>
     <toc-element topic="변경내역.md">
+        <toc-element topic="2024-07-07.md"/>
         <toc-element topic="2024-07-04.md"/>
         <toc-element topic="2024-06-27.md"/>
         <toc-element topic="2024-06-25.md">
@@ -21,6 +22,7 @@
     <toc-element topic="통신-인증.md"/>
     <toc-element topic="멤버십.md">
         <toc-element topic="멤버십-로그인-연동.md"/>
+        <toc-element topic="게임계정삭제.md"/>
     </toc-element>
     <toc-element topic="마켓.md">
         <toc-element topic="토큰-발행-및-삭제.md">
