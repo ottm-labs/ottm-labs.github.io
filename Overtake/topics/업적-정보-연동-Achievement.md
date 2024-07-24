@@ -1,58 +1,58 @@
-# [DEPRECATED] 유저 업적 정보 등록(Achievement)
-> [Open Api ui](%partner-api-base%/achievement/swagger-ui/index.html)
+# 협력사 업적 정보 연동 절차
+
 ### 개요
 
-- 이 문서는 협력사 유저의 업적 정보를 OTTM Achievement 서버 등록하는 절차에 대해 설명하고 있습니다.
-- 달성할 업적에 관련된 메타 정보는 사전에 OTTM과 공유가 되어있어야 합니다. 
-- 유저가 OTTM의 멤버인 경우에만 등록이 가능합니다.
+- 이 문서는 협력사의 업적 서버와 OTTM 퀘스트 서버간의 업적 연동 절차에 대해 설명하고 있습니다.
+- 달성할 퀘스트에 관련된 메타 정보는 사전에 OTTM과 공유가 되어있어야 합니다. 
+- 유저가 OTTM의 멤버인 경우에만 연동이 가능합니다.
 
 ### 상세
-#### 업적 고유값
-- 0~99999 의 값을 갖는 업적 별 고유값
-- 10000자리 숫자를 통해, 업적의 유형 구분
-  - 1***** (10000 ~ 19999) -> ONE_TIME Quest
-  - 2***** (20000 ~ 29999) -> DAILY Quest
-  - 3***** (30000 ~ 39999) -> WEEKLY Quest (추후 개발 예정)
 
-#### 업적의 등록
-- OTTM과 협의를 통하여 업적 별 고유값 (AchievementId) 사전 공유
-- /member/record API를 통하여 유저 업적 정보 등록
-- 정상 등록된 경우, 등록된 정보를 응답값으로 반환
-- 업적 고유값을 기반으로 해당 업적 데이터의 유효기간 설정 (UTC 기준)
-  - e.g.) DAILY(achievementId: 2*****) 05.24 09:53:31 에 수신 한 경우 -> 05.25 00:00:00 만료
-  - e.g.) ONE_TIME (achievementId: 1*****) 05.24 09:53:31 에 수신 한 경우 -> 유효 기간 없음
+#### 사용자 통계 정보
+- OTTM MemberUid로 협력사의 API를 통하여 사용자 통계 정보 조회
+  - 통계 정보의 예시: 사용자 레벨, 몬스터 처치 수, 재화 소모량, 마지막 로그인 시간 등
+- 해당 유저의 정보가 없는 경우, 빈 응답 반환
 
-#### 업적 등록이 거부되는 경우
-- **OTTM MemberUid가 잘못 된 경우**
-- **진행도 정보가 잘못 된 경우**
-  - (현재 달성값 (numerator) < 목표값 (denominator)) 인데 Clear처리가 된 경우
-  - (현재 달성값 (numerator) >= 목표값 (denominator)) 인데 Clear처리가 되지 않은 경우
-  - (현재 달성값 (numerator), 목표값 (denominator)) 둘중 하나만 값이 들어오는 경우
-  - 목표값 (denominator)이 0인 경우
-- **achievementId가 잘못 된 경우**
-  - 현재 지원 가능한 ONE_TIME, DAILY, WEEKLY 이외의 값이 수신되는 경우
-    - (0~9999) 또는 (40000 ~ 99999) 의 ID가 수신되는 경우
-    - WEEKLY 업적 정보는 등록은 가능하나, OTTM 플랫폼상의 Quest는 추후 지원 예정
-    
+#### 협력사 API 사용자 통계 정보 응답 Schema 예시
+
+```json
+{
+  "member_uid": "example_member_uid", // 플레이어의 ottm member_uid: string
+  "updated_at": "2024-07-23T12:14:22Z", // row 값 업데이트 UTC 시간: timestamp
+  "created_at": "2024-07-18T11:41:42Z", // row 값 생성 UTC 시간: timestamp
+  "player_lv": 10, // 플레이어 현재 레벨: int
+  "gold_acquired": 1000000, // 누적 골드 획득량: bigint
+  "gold_consumed": 500000, // 누적 골드 소모량: bigint
+  "game_play_cnt": 150, // 누적 게임 플레이 횟수: int
+  "game_win_cnt": 75, // 누적 승리 총 횟수: int
+  "daily_mission_clear_cnt": 20, // 누적 일일 임무 완료 횟수: int
+  "weekly_mission_clear_cnt": 5, // 누적 주간 임무 완료 횟수: int
+  "login_at": "2024-07-23T12:14:22Z" // 마지막 로그인 UTC 시간: timestamp
+}
+```
+#### 업적의 검증
+- OTTM 퀘스트 서버에 업적 정보 및 조건 사전 등록
+- OTTM WEB을 통하여 사용자가 검증 요청 시, 협력사 API를 통해 사용자 통계 정보 조회
+- 해당 멤버의 업적 달성여부 판정 및 진행도 등록
+
 ### Flow
 
 ```mermaid
 sequenceDiagram
 autonumber
-participant partner as 협력사
-participant ottm_achievement as OTTM_업적
-participant ottm_quest as OTTM_퀘스트
-participant ottm_web as OTTM_WEB
 
-alt 업적 정보 등록
-partner ->> +ottm_achievement: 유저 업적 진행도 등록
-ottm_achievement ->> +partner: 등록된 업적 정보 응답
+participant user as 사용자
+participant partner as 협력사 API
+participant ottm_quest as OTTM (Quest)
+
+alt 게임 플레이
+user ->> +partner: 게임 진행 및 유저 정보 기록
 end
 
-alt 업적 조회 (OTTM Internal)
-ottm_web ->> +ottm_quest: 유저 퀘스트 진행도 확인
-ottm_quest ->> +ottm_achievement: 멤버 업적 진행도 조회
-ottm_achievement ->> +ottm_quest: 멤버 업적 진행도  응답
-ottm_quest ->> +ottm_web: 유저 퀘스트 진행도 응답
+alt 업적 검증
+user ->> +ottm_quest: 퀘스트 검증 요청
+ottm_quest ->> +partner: 사용자 통계 정보 조회
+partner ->> +ottm_quest: 사용자 통계 정보 
+ottm_quest ->> +user: 퀘스트 달성 여부 검증 및 응답
 end
 ```
