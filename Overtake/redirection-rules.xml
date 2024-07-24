@@ -109,6 +109,22 @@
         <description>Created after removal of "2024-06-25" from Ottm Platform developer docs</description>
         <accepts>2024-06-25.html</accepts>
     </rule>
+    <rule id="b6a3901">
+        <description>Created after removal of "2024-07-10" from Ottm Platform developer docs</description>
+        <accepts>2024-07-10.html</accepts>
+    </rule>
+    <rule id="8456ff7">
+        <description>Created after removal of "OTTM 멤버 업적 입력" from Ottm Platform developer docs</description>
+        <accepts>OTTM_멤버_업적_입력.html</accepts>
+    </rule>
+    <rule id="3d11bbf3">
+        <description>Created after removal of "API Reference" from Ottm Platform developer docs</description>
+        <accepts>API_Reference.html</accepts>
+    </rule>
+    <rule id="750b487a">
+        <description>Created after removal of "Somnis 업적용 사용자 통계 정보 DB" from Ottm Platform developer docs</description>
+        <accepts>Somnis-사용자-통계-정보-DB.html</accepts>
+    </rule>
     <rule id="598b4a5c">
         <description>Created after removal of "Burn된 사용자의 NFT 목록 조회" from Ottm Platform developer docs</description>
         <accepts>Burn된_사용자의_NFT_목록_조회.html</accepts>
