@@ -154,5 +154,3 @@ addEventListener("load", async () => {
     <script src="ottm-payment-module.v1.0.0."></script>
   </body>
 </html>
-
-```Start typing here...
