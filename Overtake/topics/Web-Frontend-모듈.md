@@ -3,7 +3,7 @@
 이 문서에서는 **Telegram Mini App**과 제공된 `ottm-payment-module.[version].js` 스크립트를 게임 애플리케이션에 통합하는 방법을 안내합니다.
 먼저 아래 링크를 통해 모듈을 다운로드해 주세요.
 
-## 0. 모듈 다운로드
+## 0단계. 모듈 다운로드
 [모듈 다운로드](https://static.overtake.world/ottm-platform/modules/ottm-payment-module.v1.0.0.js)
 
 ## 1단계: Telegram Web App SDK 추가
