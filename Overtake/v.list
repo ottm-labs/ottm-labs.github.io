@@ -7,4 +7,7 @@
     <var name="member-prod-base" value="https://member.overtake.world"/>
     <var name="api-base" value="https://api.ottm-dev.co"/>
     <var name="api-prod-base" value="https://api.overtake.world"/>
+    <var name="api-prod-base" value="https://api.overtake.world"/>
+    <var name="public-api-base" value="https://public-api.ottm-dev.co"/>
+    <var name="public-api-prod-base" value="https://public-api.overtake.world"/>
 </vars>

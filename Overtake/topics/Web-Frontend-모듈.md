@@ -1,4 +1,4 @@
-# Telegram Star 및 크립토 결제 통합 가이드
+# Web Frontend 모듈
 
 이 문서에서는 **Telegram Mini App**과 제공된 `bundle.js` 스크립트를 게임 애플리케이션에 통합하는 방법을 안내합니다.
 먼저 [링크](url)에서 모듈을 다운로드 해주세요.
@@ -27,7 +27,7 @@ Telegram Web App SDK를 로드한 후, <body> 섹션의 끝부분에 제공된 b
 </body>
 ```
 
-## 3단계: 모듈 인터페이스 
+## 3단계: 모듈 인터페이스
 `window.overtake` 객체는 두 개의 주요 인터페이스인 **StarPaymentHelper**와 **CryptoPaymentHelper**를 포함하고 있습니다. 이를 통해 사용자는 각각 스타 결제와 암호화폐 결제를 처리할 수 있습니다.
 ```typescript
 window.overtake = {
@@ -100,7 +100,7 @@ addEventListener("load", async () => {
 });
 ```
 
-## 예제 코드 
+## 예제 코드
 
 다음은 위에서 설명한 스크립트를 포함한 HTML 예제입니다.
 ```html
@@ -152,4 +152,4 @@ addEventListener("load", async () => {
   </body>
 </html>
 
-```
+```Start typing here...
