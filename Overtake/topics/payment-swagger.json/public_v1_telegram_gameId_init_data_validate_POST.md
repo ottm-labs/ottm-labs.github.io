@@ -1,9 +1,9 @@
 # 텔레그램 init data 검증
 
-| 환경      | Host url                       |
-|---------|--------------------------------|
-| dev     | %public-api-base%/payment      |
-| testnet | %public-api-test-base%/payment |
-| prod    | %public-api-prod-base%/payment |
+| 환경      | Host url                    |
+|---------|-----------------------------|
+| dev     | %public-api-base%      |
+| testnet | %public-api-test-base% |
+| prod    | %public-api-prod-base% |
 
-<api-endpoint openapi-path="../../openapi/payment-swagger.json" method="POST" endpoint="/public/v1/telegram/{gameId}/init-data/validate"/>
+<api-endpoint openapi-path="../../openapi/telegram_validation-swagger.json" method="POST" endpoint="/telegram/init-data/validate"/>
