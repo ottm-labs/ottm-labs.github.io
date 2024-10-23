@@ -2,12 +2,15 @@
 <!DOCTYPE vars SYSTEM "https://resources.jetbrains.com/writerside/1.0/vars.dtd">
 <vars>
     <var name="partner-api-base" value="https://partner-api.ottm-dev.co"/>
+    <var name="partner-api-test-base" value="https://partner-api.overtake-test.world"/>
     <var name="partner-api-prod-base" value="https://partner-api.overtake.world"/>
     <var name="member-base" value="https://member.ottm-dev.co"/>
+    <var name="member-test-base" value="https://member.overtake-test.world"/>
     <var name="member-prod-base" value="https://member.overtake.world"/>
     <var name="api-base" value="https://api.ottm-dev.co"/>
-    <var name="api-prod-base" value="https://api.overtake.world"/>
+    <var name="api-test-base" value="https://api.overtake-test.world"/>
     <var name="api-prod-base" value="https://api.overtake.world"/>
     <var name="public-api-base" value="https://public-api.ottm-dev.co"/>
+    <var name="public-api-test-base" value="https://public-api.overtake-test.world"/>
     <var name="public-api-prod-base" value="https://public-api.overtake.world"/>
 </vars>
