@@ -157,7 +157,7 @@
         ]
       }
     },
-    "/telegram/init-data/validate": {
+    "/telegram/{gameId}/init-data/validate": {
       "post": {
         "tags": [
           "텔레그램 공개 API"
@@ -168,6 +168,15 @@
             "name": "x-tg-init-data",
             "in": "header",
             "description": "initdata",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "gameId",
+            "in": "path",
+            "description": "게임 id",
             "required": true,
             "schema": {
               "type": "string"

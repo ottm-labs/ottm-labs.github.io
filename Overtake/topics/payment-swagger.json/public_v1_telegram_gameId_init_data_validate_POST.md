@@ -6,4 +6,4 @@
 | testnet | %public-api-test-base% |
 | prod    | %public-api-prod-base% |
 
-<api-endpoint openapi-path="../../openapi/telegram_validation-swagger.json" method="POST" endpoint="/telegram/init-data/validate"/>
+<api-endpoint openapi-path="../../openapi/telegram_validation-swagger.json" method="POST" endpoint="/telegram/{gameId}/init-data/validate"/>
