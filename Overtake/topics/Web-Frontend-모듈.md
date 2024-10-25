@@ -3,8 +3,13 @@
 이 문서에서는 **Telegram Mini App**과 제공된 `ottm-payment-module.[version].js` 스크립트를 게임 애플리케이션에 통합하는 방법을 안내합니다.
 먼저 아래 링크를 통해 모듈을 다운로드해 주세요.
 
-## 0단계. 모듈 다운로드
-[모듈 다운로드](https://static.overtake.world/ottm-platform/modules/ottm-payment-module.v1.0.0.js)
+## 0단계: 모듈 다운로드
+[모듈 다운로드-prod](https://static.overtake.world/excluded-sync/modules/ottm-payment-module.v1.0.0.js)
+
+[모듈 다운로드-testnet](https://static.overtake-test.world/excluded-sync/modules/ottm-payment-module.test.v1.0.0.js)
+
+[모듈 다운로드-dev](https://static.ottm-dev.co/excluded-sync/modules/ottm-payment-module.dev.v1.0.0.js)
+
 
 ## 1단계: Telegram Web App SDK 추가
 
@@ -31,11 +36,14 @@ Telegram Web App SDK를 로드한 후, (static 저장소에 업로드 된) (0) �
 ```
 
 ## 3단계: 모듈 인터페이스
-`window.overtake` 객체는 두 개의 주요 인터페이스인 **StarPaymentHelper**와 **CryptoPaymentHelper**를 포함하고 있습니다. 이를 통해 사용자는 각각 스타 결제와 암호화폐 결제를 처리할 수 있습니다.
+`window.overtake` 객체는 세 개의 주요 인터페이스인 **StarPaymentHelper** **Web3ConnectHelper** **TelegramUtility** 를 포함하고 있습니다. 
+이를 통해 사용자는 각각 텔레그램 정보조회, 스타 결제와 암호화폐 결제를 처리할 수 있습니다.
+
 ```typescript
 window.overtake = {
-  star?: StarPaymentHelper;
-  crypto?: CryptoPaymentHelper;
+  utils: TelegramUtility;
+  star: StarPaymentHelper;
+  web3Connect: Web3ConnectHelper;
   telegramInitData?: string;
   telegramUserId?: number;
 };
@@ -44,63 +52,30 @@ window.overtake = {
 ### **StarPaymentHelper** 인터페이스
 이 인터페이스는 Star 결제 처리와 관련된 기능을 제공합니다.
 
-- **requestPayment({ gameId, productId, quantity })**: 지정된 게임 ID, 상품 ID, 수량을 기반으로 결제를 요청합니다. 결제가 완료되면 생성된 인보이스 링크가 반환됩니다.
+- **requestPayment(gameId, productId, quantity)**: 지정된 게임 ID, 상품 ID, 수량을 기반으로 결제를 요청합니다. 결제가 완료되면 생성된 인보이스 링크가 반환됩니다.
 
 사용 예시:
 ```typescript
-overtake.star.requestPayment({
-  gameId: 'GGS',
-  productId: '123',
-  quantity: 1,
-});
+overtake.star.requestPayment(
+  'GGS',
+  '123',
+  1
+);
 ```
 
-### **CryptoPaymentHelper** 인터페이스
+### **Web3ConnectHelper** 인터페이스
 이 인터페이스는 암호화폐 결제를 지원하며, 다양한 지갑과의 상호작용을 제공합니다.
 
-- **openMetaMaskApp({ gameId, productId, currencyId, quantity, url })**: MetaMask 지갑을 사용하여 결제를 요청하는 함수입니다.
-- **openOKXApp({ gameId, productId, currencyId, quantity, url })**: OKX 지갑을 통해 결제를 요청하는 함수입니다.
-- **requestPayment({ chainId })**: 주어진 체인 ID를 기반으로 결제를 요청합니다.
-- **addChain(chainId)**: 주어진 체인을 지갑에 추가하는 함수입니다.(Optional)
-- **initDapp()**: 인앱 브라우저에서 Dapp 초기화를 통해 지갑 정보(주소, 체인, 앱 이름 등)를 불러옵니다.
+- **openMetaMaskApp(gameId, productId, currencyId, quantity, url)**: MetaMask 지갑을 사용하여 결제를 요청하는 함수입니다.
+- **openOKXApp(gameId, productId, currencyId, quantity, url)**: OKX 지갑을 통해 결제를 요청하는 함수입니다.
 
 사용 예시:
 ```typescript
-overtake.crypto.openMetaMaskApp({
-  gameId: 'GGS',
-  productId: '123',
-  currencyId: '13473:null',
-  quantity: 1,
-  url: 'https://yourapp.com/payment',
-});
+window.overtake.web3Connect.openOKXApp("OVERTAKE_MINIAPP", "1234", "Gold Pack", "13473:0x3b2d8a1931736fc321c24864bceee981b11c3c57", 1);
 ```
 
 ```typescript
-overtake.crypto.requestPayment({ chainId: 13473 });
-```
-
-```typescript 
-const displayAccountInfo = async () => {
-  const accountInfo = await cryptoPaymentHelper.initDapp();
-  if (accountInfo) {
-    document.getElementById("provider")!.textContent =
-      accountInfo.provider || "Unknown";
-    document.getElementById("device")!.textContent = accountInfo.device;
-    document.getElementById("appName")!.textContent = accountInfo.appName;
-    document.getElementById("address")!.textContent =
-      accountInfo.address || "Unknown";
-    document.getElementById("chain")!.textContent =
-      accountInfo.chain || "Unknown";
-  }
-};
-
-addEventListener("load", async () => {
-  const provider = cryptoPaymentHelper["_getProvider"]();
-
-  if (provider === "okx" || provider === "metamask") {
-    await displayAccountInfo();
-  }
-});
+window.overtake.web3Connect.openMetaMaskApp("OVERTAKE_MINIAPP", "1234", "Gold Pack", "13473:0x3b2d8a1931736fc321c24864bceee981b11c3c57", 1);
 ```
 
 ## 예제 코드
@@ -118,38 +93,20 @@ addEventListener("load", async () => {
   <body>
     <div id="app">
       <h1>Purchase Options</h1>
-      <button
-        onclick="overtake.star.requestPayment({gameId: 'GGS', productId: '123', quantity: 1})"
-      >
-        Star Payment
+       <button onclick="overtake.star.requestPayment('GGS', '123', 1)">
+        Star
       </button>
       <button
-        onclick="overtake.crypto.openMetaMaskApp({gameId: 'GGS', productId: '123', quantity: 1,currencyId: '13473:null', url: [dapp link]})"
+        onclick="overtake.web3Connect.openMetaMaskApp('GGS', '123', 'product name', '13473:null', 1)"
       >
-        Open MetaMask
+        MetaMask(tIMX)
       </button>
       <button
-        onclick="overtake.crypto.openOKXApp({gameId: 'GGS', productId: '123', quantity: 1, currencyId: '13473:null', url: [dapp link]})"
+        onclick="overtake.web3Connect.openOKXApp('GGS', '123', 'product name', '13473:null', 1)"
       >
-        Open OKX 
+        OKX(tIMX)
       </button>
 
-      <h2>Purchase</h2>
-      <button
-        onclick="overtake.crypto.requestPayment({chainId: 13473})"
-      >
-        Request Transaction
-      </button>
-
-      <div id="wallet-info">
-        <h2>Connected Wallet Info</h2>
-        <div>Provider:&nbsp;<span id="provider"></span></div>
-        <div>Device:&nbsp;<span id="device"></span></div>
-        <div>App Name:&nbsp;<span id="appName"></span></div>
-        <div>Address:&nbsp;<span id="address"></span></div>
-        <div>Current Chain:&nbsp;<span id="chain"></span></div>
-      </div>
- 
     <!-- 스크립트를 body 끝에 포함 -->
     <script src="ottm-payment-module.v1.0.0."></script>
   </body>
