@@ -163,4 +163,8 @@
         <description>Created after removal of "크립토 결제 주문서 생성" from Ottm Platform developer docs</description>
         <accepts>크립토_결제_주문서_생성.html</accepts>
     </rule>
+    <rule id="34b7328a">
+        <description>Created after removal of "크립토 결제" from Ottm Platform developer docs</description>
+        <accepts>크립토-결제.html</accepts>
+    </rule>
 </rules>

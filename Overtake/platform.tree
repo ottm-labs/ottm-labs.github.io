@@ -59,7 +59,6 @@
         </toc-element>
         <toc-element topic="Web-Frontend-모듈.md">
             <toc-element topic="텔레그램-유틸리티.md"/>
-            <toc-element topic="크립토-결제.md"/>
             <toc-element topic="텔레그램-Star-결제.md"/>
         </toc-element>
     </toc-element>
