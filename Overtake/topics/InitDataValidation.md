@@ -2,6 +2,7 @@
 
 ```mermaid
 sequenceDiagram
+    autonumber
 actor user as 사용자
 participant game as 게임 클라이언트
 participant game-ser as 게임 서버

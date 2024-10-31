@@ -7,19 +7,34 @@
 
 ### 인터페이스
 ```javascript
-window.overtake.star.requestPayment(gameId, productId, quantity, onSuccess?, onFail?, fetchPaymentStatus?);
+window.overtake.star.requestPayment(gameId, productId, quantity, onSuccess?, onFail?);
 ```
 ### 파라미터
 <b>requestPayment</b>
 
-| 이름        | 타입                                 | 설명                   | 예제 데이터     |
-|-----------|------------------------------------|----------------------|------------|
-| gameId    | String                             | 게임 식별자               | "OVERTAKE_MINIAPP" |
-| productId | String                             | 제품 식별자               | "1234"     |
-| quantity  | Number                             | 구매할 제품 수량            | 1          |
-| onSuccess  | Function(invoiceId?: string): void | 결제 성공 시 호출되는 콜백 함수	  | (id) => console.log(id)           |
-| onFail  | Function(status, errorCode?): void	                | 결제 실패 시 호출되는 콜백 함수   | (status, code) => alert(status)           |
-| fetchPaymentStatus  | Function: Promise<ApiResponse<InvoiceApiResponse>> | 결제 상태를 확인하기 위한 함수 | () => fetchPaymentStatus()           |
+| 이름                 | 타입         | 설명                  | 예제 데이터                              |
+|--------------------|------------|---------------------|-------------------------------------|
+| gameId             | String     | 게임 식별자              | "OVERTAKE_MINIAPP"                  |
+| productId          | String     | 제품 식별자              | "1234"                              |
+| quantity           | Number     | 구매할 제품 수량           | 1                                   |
+| onSuccess          | Function?  | 결제 성공 시 호출되는 콜백 함수	 | (id) => console.log(id)             |
+| onFail             | Function?	 | 결제 실패 시 호출되는 콜백 함수  | (status, code) => alert(status)     |
+| fetchPaymentStatus | Function?  | 결제 상태를 확인하기 위한 함수   | (invoiceId) => fetchPaymentStatus() |
+
+<b>requestPayment.onSuccess</b>
+결제 성공 시 호출되는 onSuccess 콜백 함수의 파라미터
+
+| 이름        | 타입     | 설명    | 예제 데이터 |
+|-----------|--------|-------|--------|
+| invoiceId | String | 결제 ID | "1234" |
+
+<b>requestPayment.onFail</b>
+결제 실패 시 호출되는 onFail 콜백 함수의 파라미터
+
+| 이름        | 타입     | 설명    | 예제 데이터   | 참고                                         |
+|-----------|--------|-------|----------|--------------------------------------------|
+| status    | Enum?  | 상태    | "failed" | ("pending", "paid", "cancelled", "failed") |
+| errorCode | Number | 에러 코드 | 55016    | [결제 서버 에러 코드](결제-서버-에러-코드.md)              |
 
 
 ### 호출 예제
@@ -31,7 +46,6 @@ window.overtake.star.requestPayment(
   1, 
   (invoiceId) => console.log("Payment successful:", invoiceId), 
   (status, errorCode) => console.error("Payment failed:", status, errorCode),
-  fetchPaymentStatusFunction // fetchPaymentStatus가 필요한 경우
 );
 
 ```
@@ -52,23 +66,36 @@ StarRequestPayment(
 
 ### 인터페이스
 ```javascript
-window.overtake.star.requestCryptoPayment(gameId, productId, productName, currencyId, quantity, walletProvider, onSuccess?, onFail?, fetchPaymentStatus?);
+window.overtake.star.requestCryptoPayment(gameId, productId, productName, currencyId, quantity, walletProvider, onSuccess?, onFail?);
 ```
 ### 파라미터
 <b>requestCryptoPayment</b>
 
-| 이름        | 타입                                               | 설명                                        | 예제 데이터                         |
-|-----------|--------------------------------------------------|-------------------------------------------|--------------------------------|
-| gameId    | String                                           | 게임 식별자                                    | "OVERTAKE_MINIAPP"             |
-| productId | String                                           | 제품 식별자                                    | "1234"                         |
-|productName | 	String	                                         | 제품 이름                                     | 	"Legendary Sword"             |
-|currencyId	| String                                           | 	결제 통화 식별자	                               | "ETH"                          |
-| quantity  | Number                                           | 구매할 제품 수량                                 | 1                              |
-|walletProvider	| `"metamask" | "okx"`	 |사용할 지갑 제공자 (MetaMask 또는 OKX)	|"metamask"|
-| onSuccess  | Function(invoiceId?: string): void               | 결제 성공 시 호출되는 콜백 함수	                       | (id) => console.log(id)        |
-| onFail  | Function(status, errorCode?): void	              | 결제 실패 시 호출되는 콜백 함수                        | (status, code) => alert(status) |
-| fetchPaymentStatus  | Function: Promise<ApiResponse<InvoiceApiResponse>> | 결제 상태를 확인하기 위한 함수                         | () => fetchPaymentStatus()     |
+| 이름              | 타입         | 설명                  | 예제 데이터                          | 참조                                                                                 |
+|-----------------|------------|---------------------|---------------------------------|------------------------------------------------------------------------------------|
+| gameId          | String     | 게임 식별자              | "OVERTAKE_MINIAPP"              |                                                                                    |
+| productId       | String     | 제품 식별자              | "1234"                          |                                                                                    |
+| productName     | String	    | 제품 이름               | 	"Legendary Sword"              | 상품쪽에선 다국어 처리를 하지 않기에, 결제 화면에서 결제하는 상품의 이름을 다국어 처리 하기 위해 전달합니다                      |
+| currencyId	     | String     | 	결제 통화 식별자	         | "13473:null"                    | [게임의 상품 목록 조회에서 응답받는 id (api payload.contents.prices.currencyId)](게임의_상품_목록_조회.md) |
+| quantity        | Number     | 구매할 제품 수량           | 1                               |                                                                                    |
+| walletProvider	 | Enum       | 지갑 종류	              | "metamask"	                     | ("metamask", "okx")                                                                ||
+| onSuccess       | Function?  | 결제 성공 시 호출되는 콜백 함수	 | (id) => console.log(id)         |                                                                                    |
+| onFail          | Function?	 | 결제 실패 시 호출되는 콜백 함수  | (status, code) => alert(status) |                                                                                    |
 
+<b>requestCryptoPayment.onSuccess</b>
+결제 성공 시 호출되는 onSuccess 콜백 함수의 파라미터
+
+| 이름        | 타입     | 설명    | 예제 데이터 |
+|-----------|--------|-------|--------|
+| invoiceId | String | 결제 ID | "1234" |
+
+<b>requestCryptoPayment.onFail</b>
+결제 실패 시 호출되는 onFail 콜백 함수의 파라미터
+
+| 이름        | 타입     | 설명    | 예제 데이터    | 참고                            |
+|-----------|--------|-------|-----------|-------------------------------|
+| status    | Enum   | 상태    | "EXPIRED" | ("EXPIRED")                   |
+| errorCode | Number | 에러 코드 | 55016     | [결제 서버 에러 코드](결제-서버-에러-코드.md) |
 
 ### 호출 예제
 #### Typescript
@@ -77,12 +104,11 @@ window.overtake.star.requestCryptoPayment(
   "OVERTAKE_MINIAPP", 
   "1234", 
   "Legendary Sword", 
-  "ETH", 
+  "13473:null", 
   1, 
   "metamask", 
   (invoiceId) => console.log("Payment successful:", invoiceId), 
   (status, errorCode) => console.error("Payment failed:", status, errorCode),
-  fetchPaymentStatusFunction // fetchPaymentStatus가 필요한 경우
 );
 
 
@@ -94,7 +120,7 @@ StarRequestCryptoPayment(
     "OVERTAKE_MINIAPP", 
     "1234", 
     "Legendary Sword", 
-    "ETH", 
+    "13473:null", 
     1, 
     "metamask", 
     invoiceId => Console.WriteLine($"Payment successful: {invoiceId}"), 

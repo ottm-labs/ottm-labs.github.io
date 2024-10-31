@@ -167,4 +167,182 @@
         <description>Created after removal of "크립토 결제" from Ottm Platform developer docs</description>
         <accepts>크립토-결제.html</accepts>
     </rule>
+    <rule id="568ab472">
+        <description>Created after removal of "Schemas" from Ottm Platform developer docs</description>
+        <accepts>Schemas.html</accepts>
+    </rule>
+    <rule id="7d656637">
+        <description>Created after removal of "UserCanPurchaseCheckResponse" from Ottm Platform developer docs
+        </description>
+        <accepts>UserCanPurchaseCheckResponse.html</accepts>
+    </rule>
+    <rule id="626e248f">
+        <description>Created after removal of "OttmHttpResponseUserCanPurchaseCheckResponse" from Ottm Platform
+            developer docs
+        </description>
+        <accepts>OttmHttpResponseUserCanPurchaseCheckResponse.html</accepts>
+    </rule>
+    <rule id="524f1eda">
+        <description>Created after removal of "ProductResponse" from Ottm Platform developer docs</description>
+        <accepts>ProductResponse.html</accepts>
+    </rule>
+    <rule id="7e2a515f">
+        <description>Created after removal of "ProductPriceResponse" from Ottm Platform developer docs</description>
+        <accepts>ProductPriceResponse.html</accepts>
+    </rule>
+    <rule id="bb4983e">
+        <description>Created after removal of "ProductItemResponse" from Ottm Platform developer docs</description>
+        <accepts>ProductItemResponse.html</accepts>
+    </rule>
+    <rule id="2c10e079">
+        <description>Created after removal of "ProductConstraintsResponse" from Ottm Platform developer docs
+        </description>
+        <accepts>ProductConstraintsResponse.html</accepts>
+    </rule>
+    <rule id="5a537136">
+        <description>Created after removal of "ProductConstraintRePurchaseDateResponse" from Ottm Platform developer
+            docs
+        </description>
+        <accepts>ProductConstraintRePurchaseDateResponse.html</accepts>
+    </rule>
+    <rule id="70614c31">
+        <description>Created after removal of "OttmHttpResponseContentListWrapperProductResponse" from Ottm Platform
+            developer docs
+        </description>
+        <accepts>OttmHttpResponseContentListWrapperProductResponse.html</accepts>
+    </rule>
+    <rule id="51504b08">
+        <description>Created after removal of "ContentListWrapperProductResponse" from Ottm Platform developer docs
+        </description>
+        <accepts>ContentListWrapperProductResponse.html</accepts>
+    </rule>
+    <rule id="6798578e">
+        <description>Created after removal of "TransactionMetadataResponse" from Ottm Platform developer docs
+        </description>
+        <accepts>TransactionMetadataResponse.html</accepts>
+    </rule>
+    <rule id="1f78e468">
+        <description>Created after removal of "ProductSimpleResponse" from Ottm Platform developer docs</description>
+        <accepts>ProductSimpleResponse.html</accepts>
+    </rule>
+    <rule id="2716460">
+        <description>Created after removal of "PlatformCurrencyResponse" from Ottm Platform developer docs</description>
+        <accepts>PlatformCurrencyResponse.html</accepts>
+    </rule>
+    <rule id="7187e3d3">
+        <description>Created after removal of "OttmHttpResponseInvoiceResponse" from Ottm Platform developer docs
+        </description>
+        <accepts>OttmHttpResponseInvoiceResponse.html</accepts>
+    </rule>
+    <rule id="1794006e">
+        <description>Created after removal of "InvoiceTelegramDetailResponse" from Ottm Platform developer docs
+        </description>
+        <accepts>InvoiceTelegramDetailResponse.html</accepts>
+    </rule>
+    <rule id="232e95c1">
+        <description>Created after removal of "InvoiceStatus" from Ottm Platform developer docs</description>
+        <accepts>InvoiceStatus.html</accepts>
+    </rule>
+    <rule id="6880fdf1">
+        <description>Created after removal of "InvoiceResponse" from Ottm Platform developer docs</description>
+        <accepts>InvoiceResponse.html</accepts>
+    </rule>
+    <rule id="5e850e7a">
+        <description>Created after removal of "InvoiceItemResponse" from Ottm Platform developer docs</description>
+        <accepts>InvoiceItemResponse.html</accepts>
+    </rule>
+    <rule id="464a5e65">
+        <description>Created after removal of "InvoiceDetailResponse" from Ottm Platform developer docs</description>
+        <accepts>InvoiceDetailResponse.html</accepts>
+    </rule>
+    <rule id="2e3fa032">
+        <description>Created after removal of "InvoiceCryptoDetailResponse" from Ottm Platform developer docs
+        </description>
+        <accepts>InvoiceCryptoDetailResponse.html</accepts>
+    </rule>
+    <rule id="5c503346">
+        <description>Created after removal of "GamePlatform" from Ottm Platform developer docs</description>
+        <accepts>GamePlatform.html</accepts>
+    </rule>
+    <rule id="36f6e2a7">
+        <description>Created after removal of "GameItemResponse" from Ottm Platform developer docs</description>
+        <accepts>GameItemResponse.html</accepts>
+    </rule>
+    <rule id="518c28d7">
+        <description>Created after removal of "CurrencyResponse" from Ottm Platform developer docs</description>
+        <accepts>CurrencyResponse.html</accepts>
+    </rule>
+    <rule id="6c706125">
+        <description>Created after removal of "CryptoCurrencyResponse" from Ottm Platform developer docs</description>
+        <accepts>CryptoCurrencyResponse.html</accepts>
+    </rule>
+    <rule id="f6c4bd4">
+        <description>Created after removal of "SolidityFunctionAbiItem" from Ottm Platform developer docs</description>
+        <accepts>SolidityFunctionAbiItem.html</accepts>
+    </rule>
+    <rule id="39ba875e">
+        <description>Created after removal of "Pay2InvoiceResponse" from Ottm Platform developer docs</description>
+        <accepts>Pay2InvoiceResponse.html</accepts>
+    </rule>
+    <rule id="38535c2d">
+        <description>Created after removal of "Parameter" from Ottm Platform developer docs</description>
+        <accepts>Parameter.html</accepts>
+    </rule>
+    <rule id="125f5ea6">
+        <description>Created after removal of "OttmHttpResponseCryptoInvoiceResponse" from Ottm Platform developer
+            docs
+        </description>
+        <accepts>OttmHttpResponseCryptoInvoiceResponse.html</accepts>
+    </rule>
+    <rule id="15b2d851">
+        <description>Created after removal of "CryptoInvoiceResponse" from Ottm Platform developer docs</description>
+        <accepts>CryptoInvoiceResponse.html</accepts>
+    </rule>
+    <rule id="262e3a59">
+        <description>Created after removal of "TelegramInitDataValidationResponse" from Ottm Platform developer docs
+        </description>
+        <accepts>TelegramInitDataValidationResponse.html</accepts>
+    </rule>
+    <rule id="6a812ea">
+        <description>Created after removal of "OttmHttpResponseTelegramInitDataValidationResponse" from Ottm Platform
+            developer docs
+        </description>
+        <accepts>OttmHttpResponseTelegramInitDataValidationResponse.html</accepts>
+    </rule>
+    <rule id="35f017a0">
+        <description>Created after removal of "OttmHttpResponseString" from Ottm Platform developer docs</description>
+        <accepts>OttmHttpResponseString.html</accepts>
+    </rule>
+    <rule id="14bd136f">
+        <description>Created after removal of "CryptoProductInvoiceRequest" from Ottm Platform developer docs
+        </description>
+        <accepts>CryptoProductInvoiceRequest.html</accepts>
+    </rule>
+    <rule id="b582e79">
+        <description>Created after removal of "TelegramInvoiceResponse" from Ottm Platform developer docs</description>
+        <accepts>TelegramInvoiceResponse.html</accepts>
+    </rule>
+    <rule id="269cbd0f">
+        <description>Created after removal of "OttmHttpResponseTelegramInvoiceResponse" from Ottm Platform developer
+            docs
+        </description>
+        <accepts>OttmHttpResponseTelegramInvoiceResponse.html</accepts>
+    </rule>
+    <rule id="5695e186">
+        <description>Created after removal of "OttmHttpResponse" from Ottm Platform developer docs</description>
+        <accepts>OttmHttpResponse.html</accepts>
+    </rule>
+    <rule id="69aeeb3e">
+        <description>Created after removal of "ErrorField" from Ottm Platform developer docs</description>
+        <accepts>ErrorField.html</accepts>
+    </rule>
+    <rule id="f9a43a7">
+        <description>Created after removal of "TelegramProductInvoiceRequest" from Ottm Platform developer docs
+        </description>
+        <accepts>TelegramProductInvoiceRequest.html</accepts>
+    </rule>
+    <rule id="781737b9">
+        <description>Created after removal of "API Reference" from Ottm Platform developer docs</description>
+        <accepts>API_Reference3.html</accepts>
+    </rule>
 </rules>
