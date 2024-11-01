@@ -4,11 +4,11 @@
 먼저 아래 링크를 통해 모듈을 다운로드해 주세요.
 
 ## 0단계: 모듈 다운로드
-[모듈 다운로드-prod](https://static.overtake.world/excluded-sync/modules/ottm-payment-module.v1.0.0.js)
+[모듈 다운로드-prod](https://static.overtake.world/excluded-sync/modules/ottm-payment-module.prod.v2.0.0.js)
 
-[모듈 다운로드-testnet](https://static.overtake-test.world/excluded-sync/modules/ottm-payment-module.test.v1.0.0.js)
+[모듈 다운로드-testnet](https://static.overtake-test.world/excluded-sync/modules/ottm-payment-module.test.v2.0.0.js)
 
-[모듈 다운로드-dev](https://static.ottm-dev.co/excluded-sync/modules/ottm-payment-module.dev.v1.0.0.js)
+[모듈 다운로드-dev](https://static.ottm-dev.co/excluded-sync/modules/ottm-payment-module.dev.v2.0.0.js)
 
 
 ## 1단계: Telegram Web App SDK 추가
@@ -36,47 +36,34 @@ Telegram Web App SDK를 로드한 후, (static 저장소에 업로드 된) (0) �
 ```
 
 ## 3단계: 모듈 인터페이스
-`window.overtake` 객체는 세 개의 주요 인터페이스인 **StarPaymentHelper** **Web3ConnectHelper** **TelegramUtility** 를 포함하고 있습니다. 
+`window.overtake` 객체는 두 개의 주요 인터페이스인 **TelegramUtility**, **PaymentHelper**  를 포함하고 있습니다. 
 이를 통해 사용자는 각각 텔레그램 정보조회, 스타 결제와 암호화폐 결제를 처리할 수 있습니다.
 
 ```typescript
 window.overtake = {
   utils: TelegramUtility;
-  star: StarPaymentHelper;
-  web3Connect: Web3ConnectHelper;
+  payment: PaymentHelper;
   telegramInitData?: string;
   telegramUserId?: number;
 };
 ```
+### TelegramUtility 인터페이스
+이 인터페이스는 텔레그램 미니 앱의 초기화 및 유저 정보 조회, 초대 링크 생성, 외부 링크 열기 등의 유틸리티 기능을 제공하는 클래스입니다. 주요 기능은 다음과 같습니다:
 
-### **StarPaymentHelper** 인터페이스
-이 인터페이스는 Star 결제 처리와 관련된 기능을 제공합니다.
+- initialize: 지정된 게임 ID와 미니 앱 URL로 텔레그램 초기화 데이터를 수집하고 유저 정보를 확인합니다. onInitialized 콜백 함수로 초기화 상태와 유저 정보를 반환합니다.
+- showInvitePopup: 레퍼럴 코드와 메시지를 포함하여 텔레그램 초대 링크를 열어 유저가 초대 팝업을 볼 수 있도록 합니다.
+- getStartParam: 텔레그램에서 전달된 시작 파라미터를 반환합니다.
+- getTelegramUserInfo: 유저 정보를 JSON 문자열로 반환하여 텔레그램 유저 데이터를 확인합니다.
+- checkValidUser: 초기화된 유저가 유효한지 확인하여 Boolean 값을 반환합니다.
+- isInitialized: 초기화가 완료되었는지 확인하여 Boolean 값을 반환합니다.
+- openLink: 전달된 URL을 텔레그램 외부 브라우저로 엽니다.
+이 인터페이스는 텔레그램과의 통신을 위한 다양한 유틸리티 기능을 제공하여 텔레그램 미니 앱 내에서 유저 정보 확인, 초대 링크 생성 및 외부 링크 열기 등을 간편하게 수행할 수 있게 합니다.
 
-- **requestPayment(gameId, productId, quantity)**: 지정된 게임 ID, 상품 ID, 수량을 기반으로 결제를 요청합니다. 결제가 완료되면 생성된 인보이스 링크가 반환됩니다.
+### PaymentHelper 인터페이스
+이 인터페이스는 게임 내 결제를 관리하고, 결제 상태를 확인하며, 암호화폐 결제와 관련된 기능을 제공합니다. 주요 메서드와 타입을 포함한 각 구성 요소는 아래와 같습니다.
 
-사용 예시:
-```typescript
-overtake.star.requestPayment(
-  'GGS',
-  '123',
-  1
-);
-```
-
-### **Web3ConnectHelper** 인터페이스
-이 인터페이스는 암호화폐 결제를 지원하며, 다양한 지갑과의 상호작용을 제공합니다.
-
-- **openMetaMaskApp(gameId, productId, currencyId, quantity, url)**: MetaMask 지갑을 사용하여 결제를 요청하는 함수입니다.
-- **openOKXApp(gameId, productId, currencyId, quantity, url)**: OKX 지갑을 통해 결제를 요청하는 함수입니다.
-
-사용 예시:
-```typescript
-window.overtake.web3Connect.openOKXApp("OVERTAKE_MINIAPP", "1234", "Gold Pack", "13473:0x3b2d8a1931736fc321c24864bceee981b11c3c57", 1);
-```
-
-```typescript
-window.overtake.web3Connect.openMetaMaskApp("OVERTAKE_MINIAPP", "1234", "Gold Pack", "13473:0x3b2d8a1931736fc321c24864bceee981b11c3c57", 1);
-```
+- requestPayment: 텔레그램 결제 요청을 수행합니다. 결제 후, 성공 또는 실패 여부를 콜백을 통해 반환합니다.
+- requestCryptoPayment: 암호화폐 결제 요청을 처리하는 메서드로, 사용자가 선택한 암호화폐 지갑을 열어 결제를 수행합니다. 지갑 제공자가 메타마스크와 OKX 중 하나인지 확인 후 URL을 구성하여 사용자의 브라우저를 지갑 앱으로 리다이렉션합니다.
 
 ## 예제 코드
 
@@ -92,20 +79,16 @@ window.overtake.web3Connect.openMetaMaskApp("OVERTAKE_MINIAPP", "1234", "Gold Pa
   </head>
   <body>
     <div id="app">
-      <h1>Purchase Options</h1>
-       <button onclick="overtake.star.requestPayment('GGS', '123', 1)">
-        Star
+      <button onclick="overtake.payment.requestPayment('GGS', '123', 1, (invoiceId)=> alert('payment success callback'), (status)=> alert(`payment failed due to ${status}`)">
+        Star payment
       </button>
-      <button
-        onclick="overtake.web3Connect.openMetaMaskApp('GGS', '123', 'product name', '13473:null', 1)"
-      >
-        MetaMask(tIMX)
+      <button onclick="overtake.payment.requestCryptoPayment('GGS', '123',  'product name', '13473:null',  1, 'okx',  ()=> alert('payment success callback'), (status)=> alert(`payment failed due to ${status}`)">
+        Crypto Payment (OKX)
       </button>
-      <button
-        onclick="overtake.web3Connect.openOKXApp('GGS', '123', 'product name', '13473:null', 1)"
-      >
-        OKX(tIMX)
+      <button onclick="overtake.payment.requestCryptoPayment('GGS', '123',  'product name', '13473:null',  1, 'metamask',  ()=> alert('payment success callback'), (status)=> alert(`payment failed due to ${status}`)">
+        Crypto Payment (MetaMask)
       </button>
+      <button onclick="overtake.utils.openLink('https://overtake.world')">Open link(External Browser)</button>
 
     <!-- 스크립트를 body 끝에 포함 -->
     <script src="ottm-payment-module.v1.0.0."></script>

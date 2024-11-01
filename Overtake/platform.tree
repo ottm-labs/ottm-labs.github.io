@@ -8,6 +8,7 @@
     <toc-element topic="Overview.md" />
     <toc-element topic="Variables.md"/>
     <toc-element topic="변경내역.md">
+        <toc-element topic="Empty-MD-Topic.md"/>
         <toc-element topic="2024-10-25.md"/>
         <toc-element topic="2024-10-23.md"/>
         <toc-element topic="2024-10-21.md"/>
@@ -46,20 +47,21 @@
     </toc-element>
     <toc-element topic="결제.md">
         <toc-element topic="Flow.md">
-            <toc-element topic="Crypto.md"/>
             <toc-element topic="InitDataValidation.md"/>
             <toc-element topic="Telegram.md"/>
+            <toc-element topic="Crypto.md"/>
         </toc-element>
         <toc-element topic="서버-연동.md">
             <toc-element topic="API_Reference.md">
+                <toc-element topic="결제-서버-에러-코드.md"/>
+                <toc-element topic="public_v1_telegram_gameId_init_data_validate_POST.md"/>
                 <toc-element topic="게임의_상품_목록_조회.md"/>
                 <toc-element topic="결제_내역_단건_조회.md"/>
-                <toc-element topic="public_v1_telegram_gameId_init_data_validate_POST.md"/>
+                <toc-element topic="사용자가-상품을-구매할-수-있는지-확인.md"/>
             </toc-element>
         </toc-element>
         <toc-element topic="Web-Frontend-모듈.md">
             <toc-element topic="텔레그램-유틸리티.md"/>
-            <toc-element topic="크립토-결제.md"/>
             <toc-element topic="텔레그램-Star-결제.md"/>
         </toc-element>
     </toc-element>
