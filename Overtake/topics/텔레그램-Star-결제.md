@@ -7,7 +7,7 @@
 
 ### 인터페이스
 ```javascript
-window.overtake.star.requestPayment(gameId, productId, quantity, onSuccess?, onFail?);
+window.overtake.payment.requestPayment(gameId, productId, quantity, onSuccess?, onFail?);
 ```
 ### 파라미터
 <b>requestPayment</b>
@@ -19,7 +19,6 @@ window.overtake.star.requestPayment(gameId, productId, quantity, onSuccess?, onF
 | quantity           | Number     | 구매할 제품 수량           | 1                                   |
 | onSuccess          | Function?  | 결제 성공 시 호출되는 콜백 함수	 | (id) => console.log(id)             |
 | onFail             | Function?	 | 결제 실패 시 호출되는 콜백 함수  | (status, code) => alert(status)     |
-| fetchPaymentStatus | Function?  | 결제 상태를 확인하기 위한 함수   | (invoiceId) => fetchPaymentStatus() |
 
 <b>requestPayment.onSuccess</b>
 결제 성공 시 호출되는 onSuccess 콜백 함수의 파라미터
@@ -40,7 +39,7 @@ window.overtake.star.requestPayment(gameId, productId, quantity, onSuccess?, onF
 ### 호출 예제
 #### Typescript
 ```typescript
-window.overtake.star.requestPayment(
+window.overtake.payment.requestPayment(
   "OVERTAKE_MINIAPP", 
   "1234", 
   1, 
@@ -62,11 +61,11 @@ StarRequestPayment(
 ```
 
 ## 게임 아이템 Cryptocurrency 결제 요청
-이 함수는 주어진 게임과 상품에 대해 암호화폐 결제를 요청하는 역할을 합니다. walletProvider에 따라 지갑 앱을 열고 결제를 진행하며, fetchPaymentStatus가 제공된 경우 결제 상태를 확인하여 성공 또는 실패 콜백을 호출합니다.
+이 함수는 주어진 게임과 상품에 대해 암호화폐 결제를 요청하는 역할을 합니다. walletProvider에 따라 지갑 앱을 열고 결제를 진행하며, 결제 상태를 확인하여 성공 또는 실패 콜백을 호출합니다.
 
 ### 인터페이스
 ```javascript
-window.overtake.star.requestCryptoPayment(gameId, productId, productName, currencyId, quantity, walletProvider, onSuccess?, onFail?);
+window.overtake.payment.requestCryptoPayment(gameId, productId, productName, currencyId, quantity, walletProvider, onSuccess?, onFail?);
 ```
 ### 파라미터
 <b>requestCryptoPayment</b>
@@ -100,7 +99,7 @@ window.overtake.star.requestCryptoPayment(gameId, productId, productName, curren
 ### 호출 예제
 #### Typescript
 ```typescript
-window.overtake.star.requestCryptoPayment(
+window.overtake.payment.requestCryptoPayment(
   "OVERTAKE_MINIAPP", 
   "1234", 
   "Legendary Sword", 

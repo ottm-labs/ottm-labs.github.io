@@ -4,11 +4,11 @@
 먼저 아래 링크를 통해 모듈을 다운로드해 주세요.
 
 ## 0단계: 모듈 다운로드
-[모듈 다운로드-prod](https://static.overtake.world/excluded-sync/modules/ottm-payment-module.prod.v1.0.0.js)
+[모듈 다운로드-prod](https://static.overtake.world/excluded-sync/modules/ottm-payment-module.prod.v2.0.0.js)
 
-[모듈 다운로드-testnet](https://static.overtake-test.world/excluded-sync/modules/ottm-payment-module.test.v1.0.0.js)
+[모듈 다운로드-testnet](https://static.overtake-test.world/excluded-sync/modules/ottm-payment-module.test.v2.0.0.js)
 
-[모듈 다운로드-dev](https://static.ottm-dev.co/excluded-sync/modules/ottm-payment-module.dev.v1.0.0.js)
+[모듈 다운로드-dev](https://static.ottm-dev.co/excluded-sync/modules/ottm-payment-module.dev.v2.0.0.js)
 
 
 ## 1단계: Telegram Web App SDK 추가
@@ -62,9 +62,8 @@ window.overtake = {
 ### PaymentHelper 인터페이스
 이 인터페이스는 게임 내 결제를 관리하고, 결제 상태를 확인하며, 암호화폐 결제와 관련된 기능을 제공합니다. 주요 메서드와 타입을 포함한 각 구성 요소는 아래와 같습니다.
 
-- requestPayment: 텔레그램 결제 요청을 수행합니다. 결제 초기화 후, `fetchPaymentStatus`가 전달되면 주기적으로 상태를 확인하여 성공 또는 실패 여부를 콜백을 통해 반환합니다.
+- requestPayment: 텔레그램 결제 요청을 수행합니다. 결제 후, 성공 또는 실패 여부를 콜백을 통해 반환합니다.
 - requestCryptoPayment: 암호화폐 결제 요청을 처리하는 메서드로, 사용자가 선택한 암호화폐 지갑을 열어 결제를 수행합니다. 지갑 제공자가 메타마스크와 OKX 중 하나인지 확인 후 URL을 구성하여 사용자의 브라우저를 지갑 앱으로 리다이렉션합니다.
-- fetchPaymentStatus: 현재 invoiceId와 gameId를 이용해 서버에서 결제 상태를 가져옵니다. 결제 상태 정보를 포함한 API 응답을 반환하며, requestPayment 와 requestCryptoPayment 호출 시 callback으로 넘깁니다. 
 
 ## 예제 코드
 
@@ -80,13 +79,13 @@ window.overtake = {
   </head>
   <body>
     <div id="app">
-      <button onclick="overtake.payment.requestPayment('GGS', '123', 1, (invoiceId)=> alert('payment success callback'), (status)=> alert(`payment failed due to ${status}`), ()=> overtake.payment.fetchPaymentStatus())">
+      <button onclick="overtake.payment.requestPayment('GGS', '123', 1, (invoiceId)=> alert('payment success callback'), (status)=> alert(`payment failed due to ${status}`)">
         Star payment
       </button>
-      <button onclick="overtake.payment.requestCryptoPayment('GGS', '123',  'product name', '13473:null',  1, 'okx',  ()=> alert('payment success callback'), (status)=> alert(`payment failed due to ${status}`), ()=> overtake.payment.fetchPaymentStatus())">
+      <button onclick="overtake.payment.requestCryptoPayment('GGS', '123',  'product name', '13473:null',  1, 'okx',  ()=> alert('payment success callback'), (status)=> alert(`payment failed due to ${status}`)">
         Crypto Payment (OKX)
       </button>
-      <button onclick="overtake.payment.requestCryptoPayment('GGS', '123',  'product name', '13473:null',  1, 'metamask',  ()=> alert('payment success callback'), (status)=> alert(`payment failed due to ${status}`), ()=> overtake.payment.fetchPaymentStatus())">
+      <button onclick="overtake.payment.requestCryptoPayment('GGS', '123',  'product name', '13473:null',  1, 'metamask',  ()=> alert('payment success callback'), (status)=> alert(`payment failed due to ${status}`)">
         Crypto Payment (MetaMask)
       </button>
       <button onclick="overtake.utils.openLink('https://overtake.world')">Open link(External Browser)</button>
