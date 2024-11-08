@@ -8,6 +8,7 @@
     <toc-element topic="Overview.md" />
     <toc-element topic="Variables.md"/>
     <toc-element topic="변경내역.md">
+        <toc-element topic="2024-11-08.md"/>
         <toc-element topic="Empty-MD-Topic.md"/>
         <toc-element topic="2024-10-25.md"/>
         <toc-element topic="2024-10-23.md"/>
@@ -63,6 +64,13 @@
         <toc-element topic="Web-Frontend-모듈.md">
             <toc-element topic="텔레그램-유틸리티.md"/>
             <toc-element topic="텔레그램-Star-결제.md"/>
+        </toc-element>
+    </toc-element>
+    <toc-element topic="게임-퀘스트.md">
+        <toc-element topic="Api-Reference.md">
+            <toc-element topic="게임-퀘스트-서버-에러-코드.md"/>
+            <toc-element topic="게임-퀘스트-목록-조회.md"/>
+            <toc-element topic="퀘스트-클리어-조건-부합-여부-확인.md"/>
         </toc-element>
     </toc-element>
 </instance-profile>

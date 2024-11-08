@@ -2,7 +2,6 @@
 
 | 환경      | Host url                    |
 |---------|-----------------------------|
-| dev     | %public-api-base%      |
 | testnet | %public-api-test-base% |
 | prod    | %public-api-prod-base% |
 
