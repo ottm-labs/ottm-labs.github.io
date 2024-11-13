@@ -1,4 +1,4 @@
-# 2024-10-31
+# 2024-11-01
 ## 결제
 ### 프론트 모듈
 * StarPayment 및 Web3Connect 모듈을 Payment 모듈로 통합
