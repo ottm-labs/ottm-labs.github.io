@@ -4,11 +4,11 @@
 먼저 아래 링크를 통해 모듈을 다운로드해 주세요.
 
 ## 0단계: 모듈 다운로드
-[모듈 다운로드-prod](https://static.overtake.world/excluded-sync/modules/ottm-payment-module.prod.v2.0.3.js)
+[모듈 다운로드-prod](https://static.overtake.world/excluded-sync/modules/ottm-payment-module.prod.v2.1.0.js)
 
-[모듈 다운로드-testnet](https://static.overtake-test.world/excluded-sync/modules/ottm-payment-module.test.v2.0.3.js)
+[모듈 다운로드-testnet](https://static.overtake-test.world/excluded-sync/modules/ottm-payment-module.test.v2.1.0.js)
 
-[모듈 다운로드-dev](https://static.ottm-dev.co/excluded-sync/modules/ottm-payment-module.dev.v2.0.3.js)
+[모듈 다운로드-dev](https://static.ottm-dev.co/excluded-sync/modules/ottm-payment-module.dev.v2.1.0.js)
 
 
 ## 1단계: Telegram Web App SDK 추가
@@ -36,13 +36,14 @@ Telegram Web App SDK를 로드한 후, (static 저장소에 업로드 된) (0) �
 ```
 
 ## 3단계: 모듈 인터페이스
-`window.overtake` 객체는 두 개의 주요 인터페이스인 **TelegramUtility**, **PaymentHelper**  를 포함하고 있습니다. 
-이를 통해 사용자는 각각 텔레그램 정보조회, 스타 결제와 암호화폐 결제를 처리할 수 있습니다.
+`window.overtake` 객체는 두 개의 주요 인터페이스인 **TelegramUtility**, **PaymentHelper**, **Web3ConnectHelper** 를 포함하고 있습니다. 
+이를 통해 사용자는 각각 텔레그램 정보조회, 스타 결제와 암호화폐 결제, 사용자 지갑 서명을 처리할 수 있습니다.
 
 ```typescript
 window.overtake = {
   utils: TelegramUtility;
   payment: PaymentHelper;
+  web3Connect: Web3ConnectHelper;
   telegramInitData?: string;
   telegramUserId?: number;
 };
@@ -65,6 +66,11 @@ window.overtake = {
 - requestPayment: 텔레그램 결제 요청을 수행합니다. 결제 후, 성공 또는 실패 여부를 콜백을 통해 반환합니다.
 - requestCryptoPayment: 암호화폐 결제 요청을 처리하는 메서드로, 사용자가 선택한 암호화폐 지갑을 열어 결제를 수행합니다. 지갑 제공자가 메타마스크와 OKX 중 하나인지 확인 후 URL을 구성하여 사용자의 브라우저를 지갑 앱으로 리다이렉션합니다.
 
+### Web3ConnectHelper 인터페이스 
+이 인터페이스는 사용자 서명 연결을 관리합니다. OKX Mini Wallet을 사용하여 텔레그램 미니앱에서 사용자가 간단히 Web3 지갑을 연결할 수 있도록 합니다.
+
+- signMessageWithOkx: OKX Mini Wallet을 사용하여 텔레그램 미니앱에서 사용자가 간단히 Web3 지갑을 연결할 수 있도록 합니다.
+
 ## 예제 코드
 
 다음은 위에서 설명한 스크립트를 포함한 HTML 예제입니다.
@@ -79,16 +85,17 @@ window.overtake = {
   </head>
   <body>
     <div id="app">
-      <button onclick="overtake.payment.requestPayment('GGS', '123', 1, (invoiceId)=> alert('payment success callback'), (status)=> alert(`payment failed due to ${status}`)">
+      <button onclick="overtake.payment.requestPayment('GGS', '123', 1, (invoiceId)=> alert(`payment success callback, invoiceId: ${invoiceId}`), (status)=> alert(`payment failed due to ${status}`))">
         Star payment
       </button>
-      <button onclick="overtake.payment.requestCryptoPayment('GGS', '123',  'product name', '13473:null',  1, 'okx',  ()=> alert('payment success callback'), (status)=> alert(`payment failed due to ${status}`)">
+      <button onclick="overtake.payment.requestCryptoPayment('GGS', '123',  'product name', '13473:0x3b2d8a1931736fc321c24864bceee981b11c3c57',  1, 'okx',  (invoiceId)=> alert(`payment success callback, invoiceId: ${invoiceId}`), (status)=> alert(`payment failed due to ${status}`))">
         Crypto Payment (OKX)
       </button>
-      <button onclick="overtake.payment.requestCryptoPayment('GGS', '123',  'product name', '13473:null',  1, 'metamask',  ()=> alert('payment success callback'), (status)=> alert(`payment failed due to ${status}`)">
+      <button onclick="overtake.payment.requestCryptoPayment('GGS', '123',  'product name', '13473:0x3b2d8a1931736fc321c24864bceee981b11c3c57',  1, 'metamask',  (invoiceId)=> alert(`payment success callback, invoiceId: ${invoiceId}`), (status)=> alert(`payment failed due to ${status}`))">
         Crypto Payment (MetaMask)
       </button>
       <button onclick="overtake.utils.openLink('https://overtake.world')">Open link(External Browser)</button>
+      <button id="sign-message" onclick="overtake.web3Connect.signMessageWithOkx('GGS', (result)=> alert(`Sign message result: ${result}`)), (status)=> alert(`sign message failed due to ${status}`)">Sign Message</button>
 
     <!-- 스크립트를 body 끝에 포함 -->
     <script src="ottm-payment-module.v1.0.0."></script>
