@@ -8,6 +8,7 @@
     <toc-element topic="Overview.md" />
     <toc-element topic="Variables.md"/>
     <toc-element topic="변경내역.md">
+        <toc-element topic="2024-11-21.md"/>
         <toc-element topic="2024-11-20.md"/>
         <toc-element topic="2024-11-18.md"/>
         <toc-element topic="2024-11-15.md"/>
@@ -65,6 +66,7 @@
             </toc-element>
         </toc-element>
         <toc-element topic="Web-Frontend-모듈.md">
+            <toc-element topic="클라이언트-에러-코드.md"/>
             <toc-element topic="텔레그램-유틸리티.md"/>
             <toc-element topic="텔레그램-Star-결제.md"/>
         </toc-element>
