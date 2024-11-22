@@ -4,11 +4,11 @@
 먼저 아래 링크를 통해 모듈을 다운로드해 주세요.
 
 ## 0단계: 모듈 다운로드
-[모듈 다운로드-prod](https://static.overtake.world/excluded-sync/modules/ottm-payment-module.prod.v2.2.3.js)
+[모듈 다운로드-prod](https://static.overtake.world/excluded-sync/modules/ottm-payment-module.prod.v2.3.0.js)
 
-[모듈 다운로드-testnet](https://static.overtake-test.world/excluded-sync/modules/ottm-payment-module.test.v2.2.3.js)
+[모듈 다운로드-testnet](https://static.overtake-test.world/excluded-sync/modules/ottm-payment-module.test.v2.3.0.js)
 
-[모듈 다운로드-dev](https://static.ottm-dev.co/excluded-sync/modules/ottm-payment-module.dev.v2.2.3.js)
+[모듈 다운로드-dev](https://static.ottm-dev.co/excluded-sync/modules/ottm-payment-module.dev.v2.3.0.js)
 
 
 ## 1단계: Telegram Web App SDK 추가
@@ -70,6 +70,8 @@ window.overtake = {
 이 인터페이스는 사용자 서명 연결을 관리합니다. OKX Mini Wallet을 사용하여 텔레그램 미니앱에서 사용자가 간단히 Web3 지갑을 연결할 수 있도록 합니다.
 
 - signMessageWithOkx: OKX Mini Wallet을 사용하여 텔레그램 미니앱에서 사용자가 간단히 Web3 지갑을 연결할 수 있도록 합니다.
+- signInWithPassport: Immutable Passport를 사용하여 사용자가 Web3 애플리케이션에 로그인하고, 인증된 사용자 주소를 반환합니다.
+- signOutWithPassport: Immutable Passport를 사용하여 사용자의 세션을 종료합니다.
 
 ## 예제 코드
 
