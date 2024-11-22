@@ -75,6 +75,7 @@
     <toc-element topic="게임-퀘스트.md">
         <toc-element topic="Wallet-Quest-Flow.md">
             <toc-element topic="WalletConnectQuest.md"/>
+            <toc-element topic="ImxPassportConnectQuest.md"/>
         </toc-element>
         <toc-element topic="Web-Frontend-모듈-퀘스트.md">
             <toc-element topic="메시지 서명.md"/>
