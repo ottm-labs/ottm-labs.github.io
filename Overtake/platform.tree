@@ -30,6 +30,7 @@
         <toc-element topic="2024-05-31.md"/>
         <toc-element topic="2024-05-29.md"/>
     </toc-element>
+    <toc-element topic="2024-11-22.md"/>
     <toc-element topic="통신-인증.md"/>
     <toc-element topic="멤버십.md">
         <toc-element topic="멤버십-로그인-연동.md"/>
@@ -77,6 +78,7 @@
         </toc-element>
         <toc-element topic="Web-Frontend-모듈-퀘스트.md">
             <toc-element topic="메시지 서명.md"/>
+            <toc-element topic="Immutable-Passport-인증-및-연동.md"/>
         </toc-element>
         <toc-element topic="Api-Reference.md">
             <toc-element topic="게임-퀘스트-서버-에러-코드.md"/>
