@@ -4,11 +4,11 @@
 먼저 아래 링크를 통해 모듈을 다운로드해 주세요.
 
 ## 0단계: 모듈 다운로드
-[모듈 다운로드-prod](https://static.overtake.world/excluded-sync/modules/ottm-payment-module.prod.v2.3.2.js)
+[모듈 다운로드-prod](https://static.overtake.world/excluded-sync/modules/ottm-payment-module.prod.v2.3.3.js)
 
-[모듈 다운로드-testnet](https://static.overtake-test.world/excluded-sync/modules/ottm-payment-module.test.v2.3.2.js)
+[모듈 다운로드-testnet](https://static.overtake-test.world/excluded-sync/modules/ottm-payment-module.test.v2.3.3.js)
 
-[모듈 다운로드-dev](https://static.ottm-dev.co/excluded-sync/modules/ottm-payment-module.dev.v2.3.2.js)
+[모듈 다운로드-dev](https://static.ottm-dev.co/excluded-sync/modules/ottm-payment-module.dev.v2.3.3.js)
 
 
 ## 1단계: Telegram Web App SDK 추가
